@@ -1,16 +1,18 @@
-# bot_2000
+# //TODO List
 
-A new Flutter project.
+Microsoft To Do uygulamasının flutter klonunu yapmaya çalışıyorum.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Uyuglama şunları içermelidir.
 
-A few resources to get you started if this is your first Flutter project:
+- :white_circle: Üyelik girişi.
+- :white_circle: İnternet olan her platformdan bağlantı.
+- :white_circle: İnternet yokken önbellekteki verilerin durması ve internet yokken yapılan güncellemeyi internet bağlantısı olduğunda veri tabanına bildirme.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## İçinde kullanmayı düşündüğüm servisler.
+
+Flask ile yapılmış bir API 
+PostgreSQL veri tabanı.
+Authantication servisi. (Henüz belirlenmedi)
+
