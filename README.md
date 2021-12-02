@@ -12,7 +12,7 @@ Microsoft To Do uygulamasının flutter klonunu yapmaya çalışıyorum.
 
 ## İçinde kullanmayı düşündüğüm servisler.
 
-Flask ile yapılmış bir API 
-PostgreSQL veri tabanı.
-Authantication servisi. (Henüz belirlenmedi)
+- Flask ile yapılmış bir API 
+- PostgreSQL veri tabanı.
+- Authantication servisi. (Henüz belirlenmedi)
 
