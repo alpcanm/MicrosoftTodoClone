@@ -1,7 +1,7 @@
-import 'package:bot_2000/app/pages/home.dart';
-import 'package:bot_2000/app/pages/login.dart';
-import 'package:bot_2000/app/pages/profile.dart';
-import 'package:bot_2000/app/pages/register.dart';
+import 'package:bot_2000/view/pages/home.dart';
+import 'package:bot_2000/view/pages/login.dart';
+import 'package:bot_2000/view/pages/profile.dart';
+import 'package:bot_2000/view/pages/register.dart';
 import 'package:bot_2000/core/navigation/navigation_const.dart';
 import 'package:flutter/material.dart';
 
