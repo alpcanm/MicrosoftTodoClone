@@ -16,6 +16,14 @@ Microsoft To Do uygulamasının flutter klonunu yapmaya çalışıyorum.
 - PostgreSQL veri tabanı.
 - Authantication servisi. (Henüz belirlenmedi)
 
+<<<<<<< HEAD
 
 
 ![This is an image](readme_image/taslak.png)
+=======
+## Kullanılan flutter paketleri
+
+- :white_circle: Shared Preferences (Siyah beyaz tema çerezleri)
+- :white_circle: Sadece http methodları.[Dio] (Servise özel paket kullanılmayacak. Paket bağımlılığını azaltma amaçlı.)
+- :white_circle: Provider (state management)
+>>>>>>> c5159debe8b1a8cbb7bb8a2221b4f78f096d3fa3
