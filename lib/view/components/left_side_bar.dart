@@ -1,5 +1,5 @@
 import 'package:bot_2000/core/models/notes/note_book.dart';
-import 'package:bot_2000/core/view_model/note_book_view_model.dart';
+import 'package:bot_2000/core/view_model/note_book_vm.dart';
 import 'package:bot_2000/view/components/profile_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,12 +38,8 @@ class _LeftSideBarState extends State<LeftSideBar> {
                 return const Text("Waiting");
               case ConnectionState.active:
                 List<NoteBook?> _result = snapshot.data!;
-                return ListView.builder(
-                  itemBuilder: (context, index) {
-                    return Text(_result.length.toString());
-                  },
-                  itemCount: _result.length,
-                );
+
+                return Text(_result.first!.text!);
               case ConnectionState.done:
                 return const Text("Done");
               default:
