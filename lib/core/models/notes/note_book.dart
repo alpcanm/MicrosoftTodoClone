@@ -1,17 +1,18 @@
-import 'package:flutter/material.dart';
-
 import 'package:bot_2000/core/models/notes/note.dart';
 
 class NoteBook {
   String? noteBookId;
-  String? ownerId;
-  String? title;
-  List<Note?>? noteList;
-  IconData? iconData;
+  String? relUserId;
+  String? text;
+  String? createdAt;
+  String? lastUpdate;
+  bool? isVisible;
+  Stream<List<Note?>?>? noteList;
+  String? iconData;
   NoteBook({
     this.noteBookId,
-    this.ownerId,
-    this.title,
+    this.relUserId,
+    this.text,
     this.noteList,
     this.iconData,
   });

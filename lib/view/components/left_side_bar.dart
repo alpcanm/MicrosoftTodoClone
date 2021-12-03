@@ -1,6 +1,6 @@
+import 'package:bot_2000/core/models/notes/note_book.dart';
 import 'package:bot_2000/core/view_model/note_book_view_model.dart';
 import 'package:bot_2000/view/components/profile_bar.dart';
-import 'package:bot_2000/view/widgets/buttons/sidebar_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,20 +17,39 @@ class _LeftSideBarState extends State<LeftSideBar> {
     return Expanded(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [ProfileBar.bar(context), noteBookList()],
+      children: [ProfileBar.bar(context), noteBooks()],
     ));
   }
 
-   noteBookList() {
+  StreamBuilder<List<NoteBook?>?> noteBooks() {
     final noteBookVM = Provider.of<NoteBookVM>(context, listen: false);
-
-return Text("a");
-    // return ListView.builder(
-    //   shrinkWrap: true,
-    //   itemBuilder: (context, index) {
-    //     return SideButton.button(noteBookVM.noteBookList![index]!.title!);
-    //   },
-    //   itemCount: noteBookVM.noteBookList!.length,
-    // );
+    return StreamBuilder<List<NoteBook?>?>(
+        stream: noteBookVM.getNoteBooks(),
+        initialData: [NoteBook(text: "Alpcan")],
+        builder:
+            (BuildContext context, AsyncSnapshot<List<NoteBook?>?> snapshot) {
+          if (snapshot.hasError) {
+            return const Text("An Error");
+          } else {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                return const Text("Note");
+              case ConnectionState.waiting:
+                return const Text("Waiting");
+              case ConnectionState.active:
+                List<NoteBook?> _result = snapshot.data!;
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    return Text(_result.length.toString());
+                  },
+                  itemCount: _result.length,
+                );
+              case ConnectionState.done:
+                return const Text("Done");
+              default:
+                return const Text("Default");
+            }
+          }
+        });
   }
 }

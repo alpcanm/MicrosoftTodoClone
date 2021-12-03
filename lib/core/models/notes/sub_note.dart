@@ -1,12 +1,14 @@
 class SubNote {
   String? subNoteId;
-  String? noteId;
-  String? subNote;
+  String? relNoteId;
+  String? text;
   bool? isComplete;
+  bool? isVisible;
+  String? createdAt;
   SubNote({
     this.subNoteId,
-    this.noteId,
-    this.subNote,
+    this.relNoteId,
+    this.text,
     this.isComplete,
   });
 }

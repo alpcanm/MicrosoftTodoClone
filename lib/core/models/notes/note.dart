@@ -2,18 +2,19 @@ import 'package:bot_2000/core/models/notes/sub_note.dart';
 
 class Note {
   String? noteId;
-  String? noteBookId;
-  String? title;
+  String? relNoteBookId;
+  String? text;
   bool? isMajor;
   bool? isComplete;
-  List<SubNote?>? subNotes;
+  bool? isVisible;
+  Stream<List<SubNote?>?>? subNotes;
   String? comment;
   String? createdAt;
   String? lastUpdate;
   Note({
     this.noteId,
-    this.noteBookId,
-    this.title,
+    this.relNoteBookId,
+    this.text,
     this.isMajor,
     this.isComplete,
     this.subNotes,
