@@ -1,11 +1,12 @@
 import 'package:bot_2000/core/models/user.dart';
-import 'package:bot_2000/core/view_model/user_vm.dart';
+import 'package:bot_2000/core/view_model/view_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProfileBar {
   static Widget bar(BuildContext context) {
-    final _userVM = Provider.of<UserVM>(context);
+    final _userVM = Provider.of<ViewModel>(context);
     User? _user = _userVM.user;
 
     if (_user != null) {

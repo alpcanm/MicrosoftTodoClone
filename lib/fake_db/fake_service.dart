@@ -1,6 +1,5 @@
-import 'package:bot_2000/core/models/notes/note.dart';
+import 'dart:async';
 import 'package:bot_2000/core/models/notes/note_book.dart';
-import 'package:bot_2000/core/models/notes/sub_note.dart';
 import 'package:bot_2000/core/models/user.dart';
 import 'package:bot_2000/core/packages/get_it.dart';
 import 'package:bot_2000/fake_db/fake_api.dart';
@@ -8,41 +7,33 @@ import 'package:bot_2000/fake_db/fake_api.dart';
 class FakeService {
   final FakeApi _fakeApi = getIt<FakeApi>();
 
+  User? _user;
   Future<User?> getCurrentUser() async {
-    await Future.delayed(Duration.zero);
-    return _fakeApi.currentUser;
+    String response = await _fakeApi.getCurrentUser();
+    _user = User.fromJson(response);
+    return _user;
   }
 
-  Stream<List<NoteBook?>> fakeNotebooks() async* {
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 500));
-      List<NoteBook?>? someProduct = _fakeApi.notebookList;
-      yield someProduct;
-    }
-  }
+  Stream<List<NoteBook?>>? getNoteBooks({String? userId}) {
+    List<NoteBook?> noteBooks;
 
-  Stream<List<Note?>?> fakeNotes() async* {
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 500));
-      List<Note?>? someProduct = _fakeApi.noteList;
-      yield someProduct;
-    }
-  }
+    Stream<List<NoteBook?>> _fakeNotebooks(bool isTrue, String id) async* {
+      while (isTrue) {
+        await Future.delayed(const Duration(milliseconds: 1000));
 
-  Stream<List<SubNote?>?> fakeSubNotes() async* {
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 500));
-      List<SubNote?>? someProduct = _fakeApi.subnoteList;
-      yield someProduct;
-    }
-  }
+        noteBooks = await _fakeApi.getAll(id);
+        ;
 
-  Stream<List<NoteBook?>> getNoteBooks() {
-    List<NoteBook?> _result = [];
-    for (int i = 0; i < 4; i++) {
-      // Alp can kullanıcısına ait note book ları getir.
-
+        yield noteBooks;
+      }
     }
-    return fakeNotebooks();
+
+    if (userId != null) {
+      print("b");
+      return _fakeNotebooks(true, userId);
+    } else {
+      print("a");
+      return null;
+    }
   }
 }

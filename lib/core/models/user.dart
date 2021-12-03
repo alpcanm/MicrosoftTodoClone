@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class User {
-  String? id;
+  String? userId;
   String? name;
   String? surname;
   String? mail;
@@ -10,7 +10,7 @@ class User {
   String? photoURL;
   
   User({
-    this.id,
+    this.userId,
     this.name,
     this.surname,
     this.mail,
@@ -21,7 +21,7 @@ class User {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
+      'userId': userId,
       'name': name,
       'surname': surname,
       'mail': mail,
@@ -33,7 +33,7 @@ class User {
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      id: map['id'],
+      userId: map['userId'],
       name: map['name'],
       surname: map['surname'],
       mail: map['mail'],

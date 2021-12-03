@@ -1,6 +1,7 @@
 import 'package:bot_2000/core/models/notes/note_book.dart';
-import 'package:bot_2000/core/view_model/note_book_vm.dart';
-import 'package:bot_2000/view/components/profile_bar.dart';
+import 'package:bot_2000/core/view_model/view_model.dart';
+import 'package:bot_2000/view/components/left_side/notebook_button.dart';
+import 'package:bot_2000/view/components/left_side/profile_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,25 +22,33 @@ class _LeftSideBarState extends State<LeftSideBar> {
     ));
   }
 
-  StreamBuilder<List<NoteBook?>?> noteBooks() {
-    final noteBookVM = Provider.of<NoteBookVM>(context, listen: false);
-    return StreamBuilder<List<NoteBook?>?>(
-        stream: noteBookVM.getNoteBooks(),
-        initialData: [NoteBook(text: "Alpcan")],
+  StreamBuilder<List<NoteBook?>> noteBooks() {
+    final noteBookVM = Provider.of<ViewModel>(context);
+    return StreamBuilder<List<NoteBook?>>(
+        stream: noteBookVM.noteBookList,
         builder:
-            (BuildContext context, AsyncSnapshot<List<NoteBook?>?> snapshot) {
+            (BuildContext context, AsyncSnapshot<List<NoteBook?>> snapshot) {
           if (snapshot.hasError) {
             return const Text("An Error");
           } else {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
-                return const Text("Note");
+                return const Text("None");
               case ConnectionState.waiting:
                 return const Text("Waiting");
               case ConnectionState.active:
                 List<NoteBook?> _result = snapshot.data!;
-
-                return Text(_result.first!.text!);
+                return ListView.builder(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    NoteBook _noteBook = _result[index]!;
+                    return NoteBookButton(
+                      subTitle: _noteBook.noteList?.length.toString() ?? "0",
+                      title: _noteBook.text!,
+                    );
+                  },
+                  itemCount: _result.length,
+                );
               case ConnectionState.done:
                 return const Text("Done");
               default:
@@ -47,5 +56,12 @@ class _LeftSideBarState extends State<LeftSideBar> {
             }
           }
         });
+  }
+
+  @override
+  void dispose() {
+    final noteBookVM = Provider.of<ViewModel>(context, listen: false);
+
+    super.dispose();
   }
 }

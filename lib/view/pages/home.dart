@@ -1,4 +1,4 @@
-import 'package:bot_2000/view/components/left_side_bar.dart';
+import 'package:bot_2000/view/components/left_side/left_side_stream.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
