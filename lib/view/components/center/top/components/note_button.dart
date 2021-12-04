@@ -1,23 +1,22 @@
-import 'package:bot_2000/view/components/left_side/notebook_button.dart';
+import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:flutter/material.dart';
-
 import 'package:bot_2000/core/models/notes/note.dart';
+import 'package:provider/provider.dart';
 
-class NoteBar extends StatefulWidget {
-  const NoteBar({
+class NoteButton extends StatefulWidget {
+  const NoteButton({
     Key? key,
     required this.note,
   }) : super(key: key);
   final Note note;
   @override
-  _NoteBarState createState() => _NoteBarState();
+  _NoteButtonState createState() => _NoteButtonState();
 }
 
-class _NoteBarState extends State<NoteBar> {
+class _NoteButtonState extends State<NoteButton> {
   @override
   Widget build(BuildContext context) {
     Note _note = widget.note;
-
     return Card(
       color: Theme.of(context).cardColor,
       child: InkWell(
@@ -37,7 +36,11 @@ class _NoteBarState extends State<NoteBar> {
             ),
           ),
         ),
-        onTap: () {},
+        onTap: () {
+          final _noteViewModel =
+              Provider.of<NoteViewModel>(context, listen: false);
+          _noteViewModel.currentNote = _note;
+        },
       ),
     );
   }

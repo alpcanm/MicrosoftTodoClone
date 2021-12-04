@@ -6,8 +6,8 @@ import 'package:bot_2000/view/components/left_side/profile_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LeftSideBar extends StatelessWidget {
-  const LeftSideBar({Key? key}) : super(key: key);
+class LeftArea extends StatelessWidget {
+  const LeftArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +18,12 @@ class LeftSideBar extends StatelessWidget {
   }
 
   Widget noteBooks(BuildContext context) {
-    final _noteBookVM = Provider.of<ViewModel>(context, listen: false);
+    final _viewModel = Provider.of<ViewModel>(context, listen: false);
     return FutureBuilder<User?>(
-      future: _noteBookVM.getCurrentUser(),
+      future: _viewModel.getCurrentUser(),
       builder: (context, AsyncSnapshot<User?> snapshot) {
         if (snapshot.hasData) {
-          return streamBuilder(_noteBookVM, snapshot.data!.userId!);
+          return streamBuilder(_viewModel, snapshot.data!.userId!);
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         } else {
@@ -40,9 +40,9 @@ class LeftSideBar extends StatelessWidget {
   }
 
   StreamBuilder<List<NoteBook?>> streamBuilder(
-      ViewModel _noteBookVM, String userId) {
+      ViewModel _viewModel, String userId) {
     return StreamBuilder<List<NoteBook?>>(
-        stream: _noteBookVM.getNoteBooks(userId),
+        stream: _viewModel.getNoteBooks(userId),
         builder:
             (BuildContext context, AsyncSnapshot<List<NoteBook?>> snapshot) {
           if (snapshot.hasError) {

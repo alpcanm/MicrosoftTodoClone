@@ -14,8 +14,8 @@ class ProfileBar extends StatefulWidget {
 class _ProfileBarState extends State<ProfileBar> {
   @override
   Widget build(BuildContext context) {
-    final _userVM = Provider.of<ViewModel>(context);
-    User? _user = _userVM.user;
+    final _viewModel = Provider.of<ViewModel>(context);
+    User? _user = _viewModel.user;
 
     if (_user != null) {
       return ListTile(

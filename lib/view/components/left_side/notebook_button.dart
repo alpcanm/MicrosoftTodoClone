@@ -1,3 +1,4 @@
+import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +41,9 @@ class _NoteBookButtonState extends State<NoteBookButton> {
       ),
       onTap: () {
         final _viewModel = Provider.of<ViewModel>(context, listen: false);
-        _viewModel.noteId = widget.noteBookId;
+        final _noteViewModel = Provider.of<NoteViewModel>(context, listen: false);
+        _viewModel.noteBookId = widget.noteBookId;
+        _noteViewModel.currentNote = null;
       },
     );
   }

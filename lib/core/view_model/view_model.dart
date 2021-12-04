@@ -20,12 +20,13 @@ class ViewModel with ChangeNotifier implements NotesLogic, UserLogic {
     notifyListeners();
   }
 
-  String _noteId = "";
-  String get noteId => _noteId;
-  set noteId(String noteId) {
-    _noteId = noteId;
+  String _noteBookId = "";
+  String get noteBookId => _noteBookId;
+  set noteBookId(String noteBookId) {
+    _noteBookId = noteBookId;
     notifyListeners();
   }
+
 
   @override
   Future<User?> getCurrentUser() async {

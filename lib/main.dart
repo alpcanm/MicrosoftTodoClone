@@ -1,6 +1,7 @@
 import 'package:bot_2000/core/navigation/navigation_route.dart';
 import 'package:bot_2000/core/navigation/navigation_service.dart';
 import 'package:bot_2000/core/packages/get_it.dart';
+import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:bot_2000/view/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ void main() {
     child: const MyApp(),
     providers: [
       ChangeNotifierProvider(create: (context) => ViewModel()),
+      ChangeNotifierProvider(create: (context) => NoteViewModel()),
     ],
   ));
 }

@@ -10,7 +10,7 @@ class CenterStream extends StatelessWidget {
   Widget build(BuildContext context) {
     final _viewModel = Provider.of<ViewModel>(context);
     return StreamBuilder<List<Note?>>(
-      stream: _viewModel.getNotes(_viewModel.noteId),
+      stream: _viewModel.getNotes(_viewModel.noteBookId),
       builder: (context, AsyncSnapshot<List<Note?>> snapshot) {
         if (snapshot.hasError) {
           return Text(snapshot.error.toString());
@@ -30,7 +30,7 @@ class CenterStream extends StatelessWidget {
               );
             case ConnectionState.active:
               List<Note?> _result = snapshot.data!;
-              return RightTable(
+              return NoteTable(
                 notes: _result,
               );
             case ConnectionState.done:

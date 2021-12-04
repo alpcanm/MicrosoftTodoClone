@@ -1,19 +1,19 @@
-import 'package:bot_2000/view/components/center/top/components/note_bar.dart';
+import 'package:bot_2000/view/components/center/top/components/note_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_2000/core/models/notes/note.dart';
 
-class RightTable extends StatefulWidget {
-  const RightTable({
+class NoteTable extends StatefulWidget {
+  const NoteTable({
     Key? key,
     required this.notes,
   }) : super(key: key);
   final List<Note?> notes;
   @override
-  _RightTableState createState() => _RightTableState();
+  _NoteTableState createState() => _NoteTableState();
 }
 
-class _RightTableState extends State<RightTable> {
+class _NoteTableState extends State<NoteTable> {
   @override
   Widget build(BuildContext context) {
     List<Note?> _notes = widget.notes;
@@ -23,7 +23,7 @@ class _RightTableState extends State<RightTable> {
         child: ListView.builder(
           itemCount: _notes.length,
           itemBuilder: (context, index) {
-            return NoteBar(
+            return NoteButton(
               note: _notes[index]!,
             );
           },
