@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:bot_2000/core/abstraction/notes_logic.dart';
 import 'package:bot_2000/core/abstraction/user_logic.dart';
+import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:bot_2000/core/models/notes/note_book.dart';
 import 'package:bot_2000/core/models/user.dart';
 import 'package:bot_2000/core/packages/get_it.dart';
@@ -11,19 +14,20 @@ class ViewModel with ChangeNotifier implements NotesLogic, UserLogic {
   ViewModel() {
     getCurrentUser().then((a) => getNoteBooks());
   }
-  Stream<List<NoteBook?>>? _noteBooklist;
-
-  Stream<List<NoteBook?>>? get noteBookList => _noteBooklist;
-
-  set noteBookList(Stream<List<NoteBook?>>? noteBook) {
-    _noteBooklist = noteBook;
-    notifyListeners();
-  }
 
   User? _user;
   User? get user => _user;
   set user(User? user) {
     _user = user;
+    notifyListeners();
+  }
+
+  String _noteId = "";
+
+  String get noteId => _noteId;
+
+  set noteId(String noteId) {
+    _noteId = noteId;
     notifyListeners();
   }
 
@@ -34,7 +38,11 @@ class ViewModel with ChangeNotifier implements NotesLogic, UserLogic {
 
   @override
   Stream<List<NoteBook?>>? getNoteBooks({String? userId}) {
-    noteBookList = _repository.getNoteBooks(userId: user?.userId);
-    return noteBookList;
+    return _repository.getNoteBooks(userId: user?.userId);
+  }
+
+  @override
+  Stream<List<Note?>>? getNotes(String relNoteBookId) {
+    return _repository.getNotes(relNoteBookId);
   }
 }

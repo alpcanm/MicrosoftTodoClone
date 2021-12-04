@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:bot_2000/core/models/notes/note_book.dart';
 import 'package:bot_2000/core/models/user.dart';
 import 'package:bot_2000/core/packages/get_it.dart';
@@ -14,26 +15,23 @@ class FakeService {
     return _user;
   }
 
-  Stream<List<NoteBook?>>? getNoteBooks({String? userId}) {
-    List<NoteBook?> noteBooks;
+  Stream<List<NoteBook?>> getNoteBooks({String? userId}) {
+    List<NoteBook?> noteBooks = [];
+    StreamController<List<NoteBook?>> _streamController = StreamController();
+    Timer.periodic(const Duration(seconds: 2), (Timer t) async {
+      noteBooks = await _fakeApi.getNoteBooks(currentId: userId);
+      _streamController.sink.add(noteBooks);
+    });
+    return _streamController.stream;
+  }
 
-    Stream<List<NoteBook?>> _fakeNotebooks(bool isTrue, String id) async* {
-      while (isTrue) {
-        await Future.delayed(const Duration(milliseconds: 1000));
-
-        noteBooks = await _fakeApi.getAll(id);
-        ;
-
-        yield noteBooks;
-      }
-    }
-
-    if (userId != null) {
-      print("b");
-      return _fakeNotebooks(true, userId);
-    } else {
-      print("a");
-      return null;
-    }
+  Stream<List<Note?>> getNotes(String relNoteBookId) {
+    List<Note?> notes = [];
+    StreamController<List<Note?>> _streamController = StreamController();
+    Timer.periodic(const Duration(seconds: 1), (Timer t) async {
+      notes = await _fakeApi.getAllNotes(relNoteBookId);
+      _streamController.sink.add(notes);
+    });
+    return _streamController.stream;
   }
 }

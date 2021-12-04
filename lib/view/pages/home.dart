@@ -1,4 +1,5 @@
-import 'package:bot_2000/view/components/left_side/left_side_stream.dart';
+import 'package:bot_2000/view/components/left_side/left_side_bar.dart';
+import 'package:bot_2000/view/components/right_side/right_area.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -9,27 +10,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Row(
-        children: [
-          const LeftSideBar(),
-          rightSide(),
+        children: const [
+          SizedBox(width: 300, child: LeftSideBar()),
+          Expanded(child: RightArea())
         ],
       ),
     );
   }
-
-  Expanded rightSide() => Expanded(
-      flex: 5,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text("Title"),
-          ListView.builder(
-            shrinkWrap: true,
-            itemBuilder: (a, b) {
-              return const Text("data");
-            },
-            itemCount: 15,
-          )
-        ],
-      ));
 }

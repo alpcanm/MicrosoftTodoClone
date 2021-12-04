@@ -15,21 +15,20 @@ class LeftSideBar extends StatefulWidget {
 class _LeftSideBarState extends State<LeftSideBar> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [ProfileBar.bar(context), noteBooks()],
-    ));
+      children: [ProfileBar.bar(context), noteBooks],
+    );
   }
 
-  StreamBuilder<List<NoteBook?>> noteBooks() {
-    final noteBookVM = Provider.of<ViewModel>(context);
+  StreamBuilder<List<NoteBook?>> get noteBooks {
+    final _noteBookVM = Provider.of<ViewModel>(context);
     return StreamBuilder<List<NoteBook?>>(
-        stream: noteBookVM.noteBookList,
+        stream: _noteBookVM.getNoteBooks(),
         builder:
             (BuildContext context, AsyncSnapshot<List<NoteBook?>> snapshot) {
           if (snapshot.hasError) {
-            return const Text("An Error");
+            return Text(snapshot.error.toString());
           } else {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
@@ -43,8 +42,9 @@ class _LeftSideBarState extends State<LeftSideBar> {
                   itemBuilder: (context, index) {
                     NoteBook _noteBook = _result[index]!;
                     return NoteBookButton(
-                      subTitle: _noteBook.noteList?.length.toString() ?? "0",
+                      subTitle: _noteBook.noteList?.length.toString(),
                       title: _noteBook.text!,
+                      noteBookId: _noteBook.noteBookId!,
                     );
                   },
                   itemCount: _result.length,
@@ -56,12 +56,5 @@ class _LeftSideBarState extends State<LeftSideBar> {
             }
           }
         });
-  }
-
-  @override
-  void dispose() {
-    final noteBookVM = Provider.of<ViewModel>(context, listen: false);
-
-    super.dispose();
   }
 }
