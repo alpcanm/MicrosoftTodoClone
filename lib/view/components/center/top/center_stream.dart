@@ -1,11 +1,11 @@
 import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
-import 'package:bot_2000/view/components/right_side/top/top_stfl.dart';
+import 'package:bot_2000/view/components/center/top/center_top.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class RightTop extends StatelessWidget {
-  const RightTop({Key? key}) : super(key: key);
+class CenterStream extends StatelessWidget {
+  const CenterStream({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final _viewModel = Provider.of<ViewModel>(context);
@@ -19,7 +19,15 @@ class RightTop extends StatelessWidget {
             case ConnectionState.none:
               return const Text("None");
             case ConnectionState.waiting:
-              return const Text("Waiting");
+              return const Center(
+                child: SizedBox(
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
+                  ),
+                  width: 60,
+                  height: 60,
+                ),
+              );
             case ConnectionState.active:
               List<Note?> _result = snapshot.data!;
               return RightTable(

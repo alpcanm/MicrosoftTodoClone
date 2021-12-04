@@ -37,7 +37,6 @@ class _NoteBookButtonState extends State<NoteBookButton> {
             Expanded(flex: 2, child: Text(widget.subTitle ?? ""))
           ],
         ),
-        //subtitle: ,
       ),
       onTap: () {
         final _viewModel = Provider.of<ViewModel>(context, listen: false);

@@ -1,7 +1,8 @@
 import 'package:bot_2000/core/navigation/navigation_const.dart';
 import 'package:bot_2000/core/navigation/navigation_service.dart';
+import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -27,6 +28,15 @@ class _LoginPageState extends State<LoginPage> {
     final TextEditingController _mail = TextEditingController();
     final TextEditingController _password = TextEditingController();
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+    _loginFunction() async {
+      if (_formKey.currentState!.validate()) {
+        final _viewModel = Provider.of<ViewModel>(context,listen:false);
+        await _viewModel.getCurrentUser().then((value) => NavigationService
+            .instance
+            .navigateToPage(path: NavigationConstants.home));
+      }
+    }
+
     return Form(
       key: _formKey,
       child: SizedBox(
@@ -51,10 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true),
             ElevatedButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    NavigationService.instance
-                        .navigateToPage(path: NavigationConstants.home);
-                  }
+                  _loginFunction();
                 },
                 child: const Text("Submit")),
           ],

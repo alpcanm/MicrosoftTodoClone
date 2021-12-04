@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bot_2000/core/abstraction/notes_logic.dart';
 import 'package:bot_2000/core/abstraction/user_logic.dart';
 import 'package:bot_2000/core/models/notes/note.dart';
@@ -12,9 +11,8 @@ import 'package:flutter/cupertino.dart';
 class ViewModel with ChangeNotifier implements NotesLogic, UserLogic {
   final Repository _repository = getIt<Repository>();
   ViewModel() {
-    getCurrentUser().then((a) => getNoteBooks());
+    getCurrentUser();
   }
-
   User? _user;
   User? get user => _user;
   set user(User? user) {
@@ -23,9 +21,7 @@ class ViewModel with ChangeNotifier implements NotesLogic, UserLogic {
   }
 
   String _noteId = "";
-
   String get noteId => _noteId;
-
   set noteId(String noteId) {
     _noteId = noteId;
     notifyListeners();
@@ -34,11 +30,13 @@ class ViewModel with ChangeNotifier implements NotesLogic, UserLogic {
   @override
   Future<User?> getCurrentUser() async {
     user = await _repository.getCurrentUser();
+    getNoteBooks(user!.userId!);
+    return user;
   }
 
   @override
-  Stream<List<NoteBook?>>? getNoteBooks({String? userId}) {
-    return _repository.getNoteBooks(userId: user?.userId);
+  Stream<List<NoteBook?>>? getNoteBooks(String userId) {
+    return _repository.getNoteBooks(userId);
   }
 
   @override

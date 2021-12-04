@@ -5,7 +5,6 @@ import 'dart:convert' as convert;
 import 'package:flutter/services.dart';
 
 class FakeApi {
-  final List<SubNote?> subnoteList = [];
   final List<Note?> noteList = [];
   final List<NoteBook?> notebookList = [];
 
@@ -16,13 +15,15 @@ class FakeApi {
     return response;
   }
 
-  Future<List<NoteBook?>> getNoteBooks({String? currentId}) async {
-    List _result = [];
+  Future<List<NoteBook?>> getNoteBooks(String currentId) async {
+    List _noteBooklist = [];
+
     final String responseBody =
         await rootBundle.loadString('fake_db/note_book.json');
     dynamic _data = convert.jsonDecode(responseBody);
-    _result = _data;
-    return _result
+    _noteBooklist = _data;
+
+    List<NoteBook?> dyno = _noteBooklist
         .map((e) {
           NoteBook _data = NoteBook.fromMap(e);
           if (currentId == _data.relUserId) {
@@ -33,6 +34,8 @@ class FakeApi {
         })
         .where((element) => element == null ? false : true)
         .toList();
+
+    return dyno;
   }
 
   Future<List<Note?>> getAllNotes(String relNoteBookId) async {

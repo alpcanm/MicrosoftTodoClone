@@ -27,11 +27,11 @@ class Repository implements UserLogic, NotesLogic {
   }
 
   @override
-  Stream<List<NoteBook?>> getNoteBooks({String? userId}) {
+  Stream<List<NoteBook?>> getNoteBooks(String userId) {
     if (_version == Version.debug) {
-      return _fakeService.getNoteBooks(userId: userId);
+      return _fakeService.getNoteBooks(userId);
     } else {
-      return _noteServices.getNoteBooks(userId: userId);
+      return _noteServices.getNoteBooks(toString());
     }
   }
 

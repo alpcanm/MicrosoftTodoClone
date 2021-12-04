@@ -15,12 +15,12 @@ class FakeService {
     return _user;
   }
 
-  Stream<List<NoteBook?>> getNoteBooks({String? userId}) {
-    List<NoteBook?> noteBooks = [];
+  Stream<List<NoteBook?>> getNoteBooks(String userId) {
+    List<NoteBook?> _noteBooks = [];
     StreamController<List<NoteBook?>> _streamController = StreamController();
-    Timer.periodic(const Duration(seconds: 2), (Timer t) async {
-      noteBooks = await _fakeApi.getNoteBooks(currentId: userId);
-      _streamController.sink.add(noteBooks);
+    Timer.periodic(const Duration(milliseconds: 500), (Timer t) async {
+      _noteBooks = await _fakeApi.getNoteBooks(userId);
+      _streamController.sink.add(_noteBooks);
     });
     return _streamController.stream;
   }
@@ -28,7 +28,7 @@ class FakeService {
   Stream<List<Note?>> getNotes(String relNoteBookId) {
     List<Note?> notes = [];
     StreamController<List<Note?>> _streamController = StreamController();
-    Timer.periodic(const Duration(seconds: 1), (Timer t) async {
+    Timer.periodic(const Duration(milliseconds: 500), (Timer t) async {
       notes = await _fakeApi.getAllNotes(relNoteBookId);
       _streamController.sink.add(notes);
     });
