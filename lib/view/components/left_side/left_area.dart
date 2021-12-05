@@ -1,5 +1,6 @@
 import 'package:bot_2000/core/models/notes/note_book.dart';
 import 'package:bot_2000/core/models/user.dart';
+import 'package:bot_2000/core/view_model/note_methods.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:bot_2000/view/components/left_side/notebook_button.dart';
 import 'package:bot_2000/view/components/left_side/profile_bar.dart';
@@ -23,7 +24,7 @@ class LeftArea extends StatelessWidget {
       future: _viewModel.getCurrentUser(),
       builder: (context, AsyncSnapshot<User?> snapshot) {
         if (snapshot.hasData) {
-          return streamBuilder(_viewModel, snapshot.data!.userId!);
+          return streamBuilder(snapshot.data!.userId!);
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         } else {
@@ -39,10 +40,10 @@ class LeftArea extends StatelessWidget {
     );
   }
 
-  StreamBuilder<List<NoteBook?>> streamBuilder(
-      ViewModel _viewModel, String userId) {
+  StreamBuilder<List<NoteBook?>> streamBuilder(String userId) {
+    final noteMethods = NoteMethods();
     return StreamBuilder<List<NoteBook?>>(
-        stream: _viewModel.getNoteBooks(userId),
+        stream: noteMethods.getNoteBooks(userId),
         builder:
             (BuildContext context, AsyncSnapshot<List<NoteBook?>> snapshot) {
           if (snapshot.hasError) {

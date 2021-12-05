@@ -43,4 +43,18 @@ class Repository implements UserLogic, NotesLogic {
       return _noteServices.getNotes(relNoteBookId);
     }
   }
+
+  @override
+  Future<bool> postObject(
+      {String? relationId, required String tableName, object}) {
+    return _noteServices.postObject(
+        tableName: tableName, object: object, relationId: relationId);
+  }
+
+  @override
+  Future<bool> updateField(
+      {String? relationId, required String tableName, required field}) {
+    return _noteServices.updateField(
+        tableName: tableName, field: field, relationId: relationId);
+  }
 }
