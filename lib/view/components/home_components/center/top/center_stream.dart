@@ -1,7 +1,7 @@
 import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:bot_2000/core/view_model/note_methods.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
-import 'package:bot_2000/view/components/center/top/center_top.dart';
+import 'package:bot_2000/view/components/home_components/center/top/center_top.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,5 +1,5 @@
-import 'package:bot_2000/view/components/center/bottom/center_bottom.dart';
-import 'package:bot_2000/view/components/center/top/center_stream.dart';
+import 'package:bot_2000/view/components/home_components/center/bottom/center_bottom.dart';
+import 'package:bot_2000/view/components/home_components/center/top/center_stream.dart';
 import 'package:flutter/material.dart';
 
 class CenterArea extends StatelessWidget {

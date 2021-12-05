@@ -1,8 +1,8 @@
 import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
-import 'package:bot_2000/view/components/right_side/card_components/card_bottom.dart';
-import 'package:bot_2000/view/components/right_side/card_components/card_top.dart';
-import 'package:bot_2000/view/components/right_side/components/right_bottom.dart';
+import 'package:bot_2000/view/components/home_components/right_side/card_components/card_bottom.dart';
+import 'package:bot_2000/view/components/home_components/right_side/card_components/card_top.dart';
+import 'package:bot_2000/view/components/home_components/right_side/components/right_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

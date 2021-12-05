@@ -1,4 +1,4 @@
-import 'package:bot_2000/view/components/center/top/components/note_button.dart';
+import 'package:bot_2000/view/components/home_components/center/top/components/note_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_2000/core/models/notes/note.dart';

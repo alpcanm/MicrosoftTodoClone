@@ -2,8 +2,9 @@ import 'package:bot_2000/core/models/notes/note_book.dart';
 import 'package:bot_2000/core/models/user.dart';
 import 'package:bot_2000/core/view_model/note_methods.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
-import 'package:bot_2000/view/components/left_side/notebook_button.dart';
-import 'package:bot_2000/view/components/left_side/profile_bar.dart';
+import 'package:bot_2000/view/components/home_components/left_side/left_bottom.dart';
+import 'package:bot_2000/view/components/home_components/left_side/notebook_button.dart';
+import 'package:bot_2000/view/components/home_components/left_side/profile_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,16 @@ class LeftArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [const ProfileBar(), noteBooks(context)],
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          children: [
+            const ProfileBar(),
+            noteBooks(context),
+          ],
+        ),
+        const LeftBottom()
+      ],
     );
   }
 
