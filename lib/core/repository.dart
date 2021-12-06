@@ -45,10 +45,10 @@ class Repository implements UserLogic, NotesLogic {
   }
 
   @override
-  Future<bool> postObject(
-      {String? relationId, required String tableName, object}) {
-    return _noteServices.postObject(
-        tableName: tableName, object: object, relationId: relationId);
+  Future<bool> postNoteBook(
+      {String? relationId, required String tableName}) {
+    return _noteServices.postNoteBook(
+        tableName: tableName,  relationId: relationId);
   }
 
   @override
@@ -56,5 +56,17 @@ class Repository implements UserLogic, NotesLogic {
       {String? relationId, required String tableName, required field}) {
     return _noteServices.updateField(
         tableName: tableName, field: field, relationId: relationId);
+  }
+
+  @override
+  Future<bool> postNote({required String relationId, required String tableName, object}) {
+    // TODO: implement postNote
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> postSubNote({required String relationId, required String tableName, object}) {
+    // TODO: implement postSubNote
+    throw UnimplementedError();
   }
 }

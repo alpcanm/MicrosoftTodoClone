@@ -18,10 +18,12 @@ class NoteMethods implements NotesLogic {
   }
 
   @override
-  Future<bool> postObject(
-      {String? relationId, required String tableName, object}) {
-    return _repository.postObject(
-        tableName: tableName, object: object, relationId: relationId);
+  Future<bool> postNoteBook({
+    String? relationId,
+    required String tableName,
+  }) {
+    return _repository.postNoteBook(
+        tableName: tableName, relationId: relationId);
   }
 
   @override
@@ -29,5 +31,19 @@ class NoteMethods implements NotesLogic {
       {String? relationId, required String tableName, required field}) {
     return _repository.updateField(
         tableName: tableName, field: field, relationId: relationId);
+  }
+
+  @override
+  Future<bool> postNote(
+      {required String relationId, required String tableName, object}) {
+    // TODO: implement postNote
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> postSubNote(
+      {required String relationId, required String tableName, object}) {
+    // TODO: implement postSubNote
+    throw UnimplementedError();
   }
 }

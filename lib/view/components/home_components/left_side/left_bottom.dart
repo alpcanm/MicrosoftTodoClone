@@ -1,4 +1,4 @@
-import 'package:bot_2000/core/models/notes/note_book.dart';
+
 import 'package:bot_2000/core/view_model/note_methods.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:flutter/material.dart';
@@ -29,23 +29,8 @@ class LeftBottom extends StatelessWidget {
     if (_viewModel.user != null) {
       final String _userId = _viewModel.user!.userId!;
       final _noteMethods = NoteMethods();
-      await _noteMethods.postObject(
-          relationId: _userId,
-          tableName: "note_books",
-          object: newNoteBook(_userId));
+      await _noteMethods.postNoteBook(
+          relationId: _userId, tableName: "note_books");
     }
-  }
-
-  NoteBook newNoteBook(String userId) {
-    final String _now = DateTime.now().toString();
-    NoteBook _noteBook = NoteBook(
-      createdAt: _now,
-      isVisible: true,
-      lastUpdate: _now,
-      relUserId: userId,
-      text: "Yeni not defteri",
-    );
-
-    return _noteBook;
   }
 }
