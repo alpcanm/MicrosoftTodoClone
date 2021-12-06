@@ -5,9 +5,9 @@ import 'package:bot_2000/core/models/notes/note.dart';
 class CardTop extends StatelessWidget {
   const CardTop({
     Key? key,
-    required this.note,
+    this.note,
   }) : super(key: key);
-  final Note note;
+  final Note? note;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,7 +25,7 @@ class CardTop extends StatelessWidget {
         Column(
           children: [
             Text(
-              note.text!,
+              note?.text ?? "",
               style: Theme.of(context).textTheme.headline2,
             ),
             const Divider(
@@ -54,7 +54,8 @@ class CardTop extends StatelessWidget {
     );
   }
 
-  ListView subNotes() {
+  //TODO: Burası stream olmalı
+  Widget subNotes() {
     return ListView.builder(
       shrinkWrap: true,
       itemBuilder: (context, index) {
@@ -70,7 +71,7 @@ class CardTop extends StatelessWidget {
           ],
         );
       },
-      itemCount: note.subNotes?.length ?? 0,
+      itemCount: note?.subNotes?.length ?? 0,
     );
   }
 
@@ -85,7 +86,7 @@ class CardTop extends StatelessWidget {
         splashRadius: 12,
       ),
       title: Text(
-        note.subNotes![index]!.text!,
+        note?.subNotes?[index]?.text ?? "bune",
         style: Theme.of(context).textTheme.subtitle2,
       ),
     );

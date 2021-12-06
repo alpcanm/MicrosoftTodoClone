@@ -14,4 +14,6 @@ abstract class NotesLogic {
 
   Future<bool> updateField(
       {String relationId, required String tableName, required field});
+
+  Stream<Note?> getANote(String noteId);
 }

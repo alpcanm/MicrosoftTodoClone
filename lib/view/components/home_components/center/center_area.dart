@@ -1,3 +1,4 @@
+import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:bot_2000/view/components/home_components/center/bottom/center_bottom.dart';
 import 'package:bot_2000/view/components/home_components/center/top/center_stream.dart';
 import 'package:flutter/material.dart';

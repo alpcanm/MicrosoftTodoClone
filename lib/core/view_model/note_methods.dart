@@ -8,12 +8,12 @@ class NoteMethods implements NotesLogic {
   final Repository _repository = getIt<Repository>();
 
   @override
-  Stream<List<NoteBook?>>? getNoteBooks(String userId) {
+  Stream<List<NoteBook?>> getNoteBooks(String userId) {
     return _repository.getNoteBooks(userId);
   }
 
   @override
-  Stream<List<Note?>>? getNotes(String relNoteBookId) {
+  Stream<List<Note?>> getNotes(String relNoteBookId) {
     return _repository.getNotes(relNoteBookId);
   }
 
@@ -45,5 +45,10 @@ class NoteMethods implements NotesLogic {
       {required String relationId, required String tableName, object}) {
     // TODO: implement postSubNote
     throw UnimplementedError();
+  }
+
+  @override
+  Stream<Note?> getANote(String noteId) {
+     return _repository.getANote(noteId);
   }
 }

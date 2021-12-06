@@ -24,6 +24,7 @@ class ViewModel with ChangeNotifier implements UserLogic {
     notifyListeners();
   }
 
+
   @override
   Future<User?> getCurrentUser() async {
     user = await _repository.getCurrentUser();

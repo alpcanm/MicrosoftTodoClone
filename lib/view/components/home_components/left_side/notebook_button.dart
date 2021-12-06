@@ -1,26 +1,24 @@
-import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 
-class NoteBookButton extends StatefulWidget {
+class NoteBookButton extends StatelessWidget {
   const NoteBookButton({
     Key? key,
     required this.title,
     this.iconData,
     this.subTitle,
     required this.noteBookId,
+    required this.onPress,
   }) : super(key: key);
   final String title;
   final String? iconData;
   final String? subTitle;
   final String noteBookId;
-  @override
-  _NoteBookButtonState createState() => _NoteBookButtonState();
-}
+  final VoidCallback onPress;
 
-class _NoteBookButtonState extends State<NoteBookButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -31,20 +29,15 @@ class _NoteBookButtonState extends State<NoteBookButton> {
             Expanded(
                 flex: 13,
                 child: Text(
-                  widget.title,
+                 title,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 )),
-            Expanded(flex: 2, child: Text(widget.subTitle ?? ""))
+            Expanded(flex: 2, child: Text(subTitle ?? ""))
           ],
         ),
       ),
-      onTap: () {
-        final _viewModel = Provider.of<ViewModel>(context, listen: false);
-        final _noteViewModel = Provider.of<NoteViewModel>(context, listen: false);
-        _viewModel.noteBookId = widget.noteBookId;
-        _noteViewModel.currentNote = null;
-      },
+      onTap: onPress.call,
     );
   }
 }

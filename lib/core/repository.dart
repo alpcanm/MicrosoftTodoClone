@@ -28,15 +28,15 @@ class Repository implements UserLogic, NotesLogic {
 
   @override
   Stream<List<NoteBook?>> getNoteBooks(String userId) {
-    if (_version == Version.debug) {
+    if (true) {
       return _fakeService.getNoteBooks(userId);
     } else {
-      return _noteServices.getNoteBooks(toString());
+      return _noteServices.getNoteBooks(userId);
     }
   }
 
   @override
-  Stream<List<Note?>>? getNotes(String relNoteBookId) {
+  Stream<List<Note?>> getNotes(String relNoteBookId) {
     if (_version == Version.debug) {
       return _fakeService.getNotes(relNoteBookId);
     } else {
@@ -45,10 +45,9 @@ class Repository implements UserLogic, NotesLogic {
   }
 
   @override
-  Future<bool> postNoteBook(
-      {String? relationId, required String tableName}) {
+  Future<bool> postNoteBook({String? relationId, required String tableName}) {
     return _noteServices.postNoteBook(
-        tableName: tableName,  relationId: relationId);
+        tableName: tableName, relationId: relationId);
   }
 
   @override
@@ -59,14 +58,25 @@ class Repository implements UserLogic, NotesLogic {
   }
 
   @override
-  Future<bool> postNote({required String relationId, required String tableName, object}) {
+  Future<bool> postNote(
+      {required String relationId, required String tableName, object}) {
     // TODO: implement postNote
     throw UnimplementedError();
   }
 
   @override
-  Future<bool> postSubNote({required String relationId, required String tableName, object}) {
+  Future<bool> postSubNote(
+      {required String relationId, required String tableName, object}) {
     // TODO: implement postSubNote
     throw UnimplementedError();
+  }
+
+  @override
+  Stream<Note?> getANote(String noteId) {
+    if (_version == Version.debug) {
+      return _fakeService.getANote(noteId);
+    } else {
+      return _noteServices.getANote(noteId);
+    }
   }
 }
