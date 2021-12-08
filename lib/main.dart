@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     final theme = ToDoTheme.dark();
     return MaterialApp(
       title: 'Flutter Demo',
-      initialRoute: "/",
+      initialRoute: '/',
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationService.instance.navigatorKey,
       theme: theme,

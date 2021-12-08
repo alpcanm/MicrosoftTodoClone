@@ -15,7 +15,7 @@ class RightBottom extends StatelessWidget {
       child: SizedBox(
         child: Column(children: [
           Text(
-            "Son güncelleme: $lastUpdate",
+            'Son güncelleme: $lastUpdate',
             style: Theme.of(context).textTheme.caption,
             textAlign: TextAlign.center,
           ),
@@ -24,7 +24,7 @@ class RightBottom extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                "Şu tarihte oluşturuldu: $createdAt",
+                'Şu tarihte oluşturuldu: $createdAt',
                 style: Theme.of(context).textTheme.caption,
               ),
               IconButton(

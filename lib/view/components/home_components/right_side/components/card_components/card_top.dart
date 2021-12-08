@@ -25,7 +25,7 @@ class CardTop extends StatelessWidget {
         Column(
           children: [
             Text(
-              note?.text ?? "",
+              note?.text ?? '',
               style: Theme.of(context).textTheme.headline2,
             ),
             const Divider(
@@ -41,8 +41,11 @@ class CardTop extends StatelessWidget {
                 ),
                 splashRadius: 12,
               ),
-              title: TextField(
-                style: Theme.of(context).textTheme.subtitle2,
+              title: Padding(
+                padding: const EdgeInsets.only(right:15.0),
+                child: TextFormField(
+                  style: Theme.of(context).textTheme.subtitle2,
+                ),
               ),
             ),
             const Divider(
@@ -54,7 +57,7 @@ class CardTop extends StatelessWidget {
     );
   }
 
-  //TODO: Burası stream olmalı
+
   Widget subNotes() {
     return ListView.builder(
       shrinkWrap: true,
@@ -86,7 +89,7 @@ class CardTop extends StatelessWidget {
         splashRadius: 12,
       ),
       title: Text(
-        note?.subNotes?[index]?.text ?? "bune",
+        note?.subNotes?[index]?.text ?? 'bune',
         style: Theme.of(context).textTheme.subtitle2,
       ),
     );

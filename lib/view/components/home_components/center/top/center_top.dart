@@ -25,7 +25,7 @@ class _NoteTableState extends State<NoteTable> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Data Title",
+                'Data Title',
                 style: Theme.of(context).textTheme.headline1,
               ),
             ),
@@ -44,7 +44,7 @@ class _NoteTableState extends State<NoteTable> {
     } else {
       return Center(
           child: Text(
-        "Veri Yok",
+        'Veri Yok',
         style: Theme.of(context).textTheme.subtitle1,
       ));
     }

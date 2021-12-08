@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: const Text('Login'),
       ),
       body: Center(
         child: form(),
@@ -45,17 +45,17 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
-              decoration: const InputDecoration(labelText: "Mail"),
+              decoration: const InputDecoration(labelText: 'Mail'),
               controller: _mail,
             ),
             TextFormField(
-                decoration: const InputDecoration(labelText: "Password"),
+                decoration: const InputDecoration(labelText: 'Password'),
                 controller: _password,
                 validator: (a) {
                   if (a != null && a.length >= 6) {
                     return null;
                   } else {
-                    return "Password must be greater than 6";
+                    return 'Password must be greater than 6';
                   }
                 },
                 obscureText: true),
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   _loginFunction();
                 },
-                child: const Text("Submit")),
+                child: const Text('Submit')),
           ],
         ),
       ),

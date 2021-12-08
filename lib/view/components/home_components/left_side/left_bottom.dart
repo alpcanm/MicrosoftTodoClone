@@ -18,7 +18,7 @@ class LeftBottom extends StatelessWidget {
           child: TextButton.icon(
               onPressed: () => postNoteBook(context),
               icon: const Icon(Icons.add_box_sharp),
-              label: const Text("Yeni not defteri ekle")),
+              label: const Text('Yeni not defteri ekle')),
         )
       ],
     ));
@@ -30,7 +30,7 @@ class LeftBottom extends StatelessWidget {
       final String _userId = _viewModel.user!.userId!;
       final _noteMethods = NoteMethods();
       await _noteMethods.postNoteBook(
-          relationId: _userId, tableName: "note_books");
+          relationId: _userId, tableName: 'note_books');
     }
   }
 }

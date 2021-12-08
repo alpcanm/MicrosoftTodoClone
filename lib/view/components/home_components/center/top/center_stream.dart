@@ -12,7 +12,7 @@ class CenterStream extends StatelessWidget {
   Widget build(BuildContext context) {
     final _viewModel = Provider.of<ViewModel>(context);
     final noteMethods = NoteMethods();
-    if (_viewModel.noteBookId != "") {
+    if (_viewModel.noteBookId != '') {
       return StreamBuilderExtension<List<Note?>>(
           body: (context, snapshot) {
             List<Note?> _result = snapshot.data!;

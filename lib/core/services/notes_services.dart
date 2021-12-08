@@ -18,7 +18,7 @@ class NoteServices implements NotesLogic {
     StreamController<List<NoteBook?>> _streamController = StreamController();
     Timer.periodic(const Duration(milliseconds: 500), (Timer t) async {
       List<NoteBook?> _noteBooks = [];
-      Response response = await dio.get("/notebooks");
+      Response response = await dio.get('/notebooks');
       List list = convert.jsonDecode(response.data);
       for (var element in list) {
         NoteBook noteBook = NoteBook.fromMap(element);
@@ -45,11 +45,11 @@ class NoteServices implements NotesLogic {
       isVisible: true,
       lastUpdate: _now,
       relUserId: relationId,
-      text: "Yeni not defteri",
+      text: 'Yeni not defteri',
     );
 
     try {
-      await dio.post("/notebooks", data: _noteBook.toJson());
+      await dio.post('/notebooks', data: _noteBook.toJson());
     } on DioError catch (e) {
       print(e.message);
     }

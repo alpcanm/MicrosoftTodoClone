@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import 'package:bot_2000/core/view_model/note_viewmodel.dart';
-import 'package:bot_2000/core/view_model/view_model.dart';
 
 class NoteBookButton extends StatelessWidget {
   const NoteBookButton({
@@ -33,7 +30,7 @@ class NoteBookButton extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 )),
-            Expanded(flex: 2, child: Text(subTitle ?? ""))
+            Expanded(flex: 2, child: Text(subTitle ?? ''))
           ],
         ),
       ),

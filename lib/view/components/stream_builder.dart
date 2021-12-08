@@ -18,7 +18,7 @@ class StreamBuilderExtension<T> extends StatelessWidget {
         } else {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
-              return const Text("None");
+              return const Text('None');
             case ConnectionState.waiting:
               return const Center(
                 child: SizedBox(
@@ -32,9 +32,9 @@ class StreamBuilderExtension<T> extends StatelessWidget {
             case ConnectionState.active:
               return body.call(context, snapshot);
             case ConnectionState.done:
-              return const Text("Done");
+              return const Text('Done');
             default:
-              return const Text("Default");
+              return const Text('Default');
           }
         }
       },

@@ -13,7 +13,7 @@ class CardBottom extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Yorum",
+            'Yorum',
             style: Theme.of(context).textTheme.headline3,
           ),
           const Divider(
@@ -21,7 +21,7 @@ class CardBottom extends StatelessWidget {
             endIndent: 50,
           ),
           Text(
-            noteComment ?? "Yorum ekle",
+            noteComment ?? 'Yorum ekle',
             style: Theme.of(context).textTheme.bodyText2,
           )
         ],
