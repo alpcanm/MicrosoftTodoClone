@@ -5,9 +5,9 @@ import 'package:bot_2000/core/models/notes/note.dart';
 class CardTop extends StatelessWidget {
   const CardTop({
     Key? key,
-    this.note,
+    required this.note,
   }) : super(key: key);
-  final Note? note;
+  final Note note;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,29 +25,13 @@ class CardTop extends StatelessWidget {
         Column(
           children: [
             Text(
-              note?.text ?? '',
+              note.text ?? '',
               style: Theme.of(context).textTheme.headline2,
             ),
             const Divider(
               color: Colors.transparent,
             ),
             subNotes(),
-            ListTile(
-              contentPadding: const EdgeInsets.all(0),
-              leading: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.add,
-                ),
-                splashRadius: 12,
-              ),
-              title: Padding(
-                padding: const EdgeInsets.only(right:15.0),
-                child: TextFormField(
-                  style: Theme.of(context).textTheme.subtitle2,
-                ),
-              ),
-            ),
             const Divider(
               color: Colors.transparent,
             ),
@@ -56,7 +40,6 @@ class CardTop extends StatelessWidget {
       ],
     );
   }
-
 
   Widget subNotes() {
     return ListView.builder(
@@ -74,7 +57,7 @@ class CardTop extends StatelessWidget {
           ],
         );
       },
-      itemCount: note?.subNotes?.length ?? 0,
+      itemCount: note.subNotes?.length ?? 0,
     );
   }
 
@@ -89,7 +72,7 @@ class CardTop extends StatelessWidget {
         splashRadius: 12,
       ),
       title: Text(
-        note?.subNotes?[index]?.text ?? 'bune',
+        note.subNotes?[index]?.text ?? 'bune',
         style: Theme.of(context).textTheme.subtitle2,
       ),
     );

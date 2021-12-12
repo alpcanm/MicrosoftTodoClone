@@ -20,24 +20,24 @@ class SubNote {
 
   Map<String, dynamic> toMap() {
     return {
-      'subnote_it': subNoteId,
+      'sub_note_id': subNoteId,
       'rel_note_id': relNoteId,
       'text': text,
       'is_complete': isComplete,
       'is_visible': isVisible,
-      'created_at': createdAt,
+      'created_at': createdAt.toString(),
       'sequence': sequence,
     };
   }
 
   factory SubNote.fromMap(Map<String, dynamic> map) {
     return SubNote(
-      subNoteId: map['subnote_it'].toString(),
+      subNoteId: map['sub_note_id'].toString(),
       relNoteId: map['rel_note_id'].toString(),
       text: map['text'],
       isComplete: map['is_complete'],
       isVisible: map['is_visible'],
-      createdAt: map['created_at'],
+      createdAt: DateTime.tryParse(map['created_at']),
       sequence: map['sequence'],
     );
   }

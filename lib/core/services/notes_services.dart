@@ -49,7 +49,6 @@ class NoteServices implements NotesLogic {
         iconData: "",
         noteBookId: "",
         sequence: 1);
-
     try {
       await _dio.post('/notebooks', data: _noteBook.toJson());
     } on DioError catch (e) {

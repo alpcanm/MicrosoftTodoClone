@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 
-class CenterBottom extends StatefulWidget {
-  const CenterBottom({Key? key}) : super(key: key);
+import 'package:bot_2000/core/view_model/view_note_methods.dart';
 
+class CenterBottom extends StatefulWidget {
+  const CenterBottom({
+    Key? key,
+    required this.notebookId,
+  }) : super(key: key);
+  final String notebookId;
   @override
   _CenterBottomState createState() => _CenterBottomState();
 }
 
 class _CenterBottomState extends State<CenterBottom> {
+  final TextEditingController _controller = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -16,19 +23,37 @@ class _CenterBottomState extends State<CenterBottom> {
             const EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 10),
         child: Card(
           color: Theme.of(context).cardColor,
-          child: ListTile(
-            leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.add,
-                size: 28,
+          child: Form(
+            key: _formKey,
+            child: ListTile(
+              leading: IconButton(
+                onPressed: () async {
+                  if (_formKey.currentState!.validate()) {
+                    final _noteMethods = ViewNoteMethods();
+                    await _noteMethods.postNote(
+                        relationId: widget.notebookId, text: _controller.text);
+                    _controller.clear();
+                  }
+                },
+                icon: const Icon(
+                  Icons.add,
+                  size: 28,
+                ),
+                splashRadius: 30,
               ),
-              splashRadius: 30,
-            ),
-            title: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                style: Theme.of(context).textTheme.bodyText1,
+              title: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: _controller,
+                  style: Theme.of(context).textTheme.bodyText1,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Lütfen bir şeyler yazınız.";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
               ),
             ),
           ),

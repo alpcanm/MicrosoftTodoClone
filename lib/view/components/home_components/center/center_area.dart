@@ -17,9 +17,13 @@ class CenterArea extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.max,
         children: _viewModel.noteBookId != ''
-            ? const [
-                Flexible(child: CenterStream()),
-                SizedBox(height: 150, child: CenterBottom())
+            ? [
+                const Flexible(child: CenterStream()),
+                SizedBox(
+                    height: 150,
+                    child: CenterBottom(
+                      notebookId: _viewModel.noteBookId,
+                    ))
               ]
             : [],
       ),

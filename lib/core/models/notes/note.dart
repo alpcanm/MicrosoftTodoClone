@@ -37,8 +37,8 @@ class Note {
       'is_complete': isComplete,
       'is_visible': isVisible,
       'comment': comment,
-      'created_at': createdAt,
-      'last_update': lastUpdate,
+      'created_at': createdAt.toString(),
+      'last_update': lastUpdate.toString(),
       'sequence': sequence,
     };
   }
