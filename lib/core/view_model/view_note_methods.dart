@@ -1,10 +1,10 @@
 import 'package:bot_2000/core/abstraction/notes_logic.dart';
 import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:bot_2000/core/models/notes/note_book.dart';
-import 'package:bot_2000/core/packages/get_it.dart';
+import 'package:bot_2000/core/get_it/get_it.dart';
 import 'package:bot_2000/core/repository.dart';
 
-class NoteMethods implements NotesLogic {
+class ViewNoteMethods implements NotesLogic {
   final Repository _repository = getIt<Repository>();
 
   @override
@@ -34,21 +34,17 @@ class NoteMethods implements NotesLogic {
   }
 
   @override
-  Future<bool> postNote(
-      {required String relationId, required String tableName, object}) {
-    // TODO: implement postNote
-    throw UnimplementedError();
+  Future<bool> postNote({required String relationId, required String text}) {
+    return _repository.postNote(text: text, relationId: relationId);
   }
 
   @override
-  Future<bool> postSubNote(
-      {required String relationId, required String tableName, object}) {
-    // TODO: implement postSubNote
-    throw UnimplementedError();
+  Future<bool> postSubNote({required String relationId, required String text}) {
+    return _repository.postSubNote(text: text, relationId: relationId);
   }
 
   @override
   Stream<Note?> getANote(String noteId) {
-     return _repository.getANote(noteId);
+    return _repository.getANote(noteId);
   }
 }

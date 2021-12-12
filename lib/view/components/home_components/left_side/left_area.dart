@@ -1,6 +1,6 @@
 import 'package:bot_2000/core/models/notes/note_book.dart';
 import 'package:bot_2000/core/models/user.dart';
-import 'package:bot_2000/core/view_model/note_methods.dart';
+import 'package:bot_2000/core/view_model/view_note_methods.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:bot_2000/view/components/home_components/left_side/left_bottom.dart';
@@ -53,7 +53,7 @@ class LeftArea extends StatelessWidget {
   }
 
   StreamBuilderExtension streamBuilder(String userId) {
-    final noteMethods = NoteMethods();
+    final noteMethods = ViewNoteMethods();
     return StreamBuilderExtension<List<NoteBook?>?>(
       stream: noteMethods.getNoteBooks(userId),
       body: (context, snapshot) {
@@ -61,17 +61,17 @@ class LeftArea extends StatelessWidget {
         return ListView.builder(
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            NoteBook _noteBook = _result[index]!;
+            NoteBook? _noteBook = _result[index];
             return NoteBookButton(
-              subTitle: _noteBook.noteList?.length.toString(),
-              title: _noteBook.text!,
-              noteBookId: _noteBook.noteBookId!,
+              subTitle: _noteBook?.noteList?.length.toString(),
+              title: _noteBook?.text ?? 'Boş',
+              noteBookId: _noteBook?.noteBookId ?? "Boş",
               onPress: () {
                 final _viewModel =
                     Provider.of<ViewModel>(context, listen: false);
                 final _noteViewModel =
                     Provider.of<NoteViewModel>(context, listen: false);
-                _viewModel.noteBookId = _noteBook.noteBookId!;
+                _viewModel.noteBookId = _noteBook?.noteBookId ?? "Boş";
                 _noteViewModel.currentNote = null;
               },
             );

@@ -11,8 +11,9 @@ class Note {
   bool? isVisible;
   List<SubNote?>? subNotes;
   String? comment;
-  String? createdAt;
-  String? lastUpdate;
+  DateTime? createdAt;
+  DateTime? lastUpdate;
+  int? sequence;
   Note({
     this.noteId,
     this.relNoteBookId,
@@ -24,33 +25,36 @@ class Note {
     this.comment,
     this.createdAt,
     this.lastUpdate,
+    this.sequence,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'noteId': noteId,
-      'relNoteBookId': relNoteBookId,
+      'note_id': noteId,
+      'rel_notebook_id': relNoteBookId,
       'text': text,
-      'isMajor': isMajor,
-      'isComplete': isComplete,
-      'isVisible': isVisible,
+      'is_major': isMajor,
+      'is_complete': isComplete,
+      'is_visible': isVisible,
       'comment': comment,
-      'createdAt': createdAt,
-      'lastUpdate': lastUpdate,
+      'created_at': createdAt,
+      'last_update': lastUpdate,
+      'sequence': sequence,
     };
   }
 
   factory Note.fromMap(Map<String, dynamic> map) {
     return Note(
-      noteId: map['noteId'],
-      relNoteBookId: map['relNoteBookId'],
+      noteId: map['note_id'].toString(),
+      relNoteBookId: map['rel_notebook_id'].toString(),
       text: map['text'],
-      isMajor: map['isMajor'],
-      isComplete: map['isComplete'],
-      isVisible: map['isVisible'],
+      isMajor: map['is_major'],
+      isComplete: map['is_complete'],
+      isVisible: map['is_visible'],
       comment: map['comment'],
-      createdAt: map['createdAt'],
-      lastUpdate: map['lastUpdate'],
+      createdAt: DateTime.tryParse((map['created_at'])),
+      lastUpdate: DateTime.tryParse(map['last_update']),
+      sequence: map['sequence'],
     );
   }
 

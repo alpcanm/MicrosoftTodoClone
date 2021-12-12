@@ -19,7 +19,7 @@ dependencies:
   dio: ^4.0.4
   google_fonts: ^2.1.0
   get_it: ^7.2.0
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -31,9 +31,9 @@ dev_dependencies:
 flutter:
   assets:
       - assets/fake_db/user.json
-      - assets/fake_db/note.json
-      - assets/fake_db/note_book.json
-      - assets/fake_db/sub_note.json
+
+
+
  
   uses-material-design: true
     

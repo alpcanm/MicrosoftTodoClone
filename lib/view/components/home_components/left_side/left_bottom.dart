@@ -1,5 +1,5 @@
 
-import 'package:bot_2000/core/view_model/note_methods.dart';
+import 'package:bot_2000/core/view_model/view_note_methods.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +28,7 @@ class LeftBottom extends StatelessWidget {
     final _viewModel = Provider.of<ViewModel>(context, listen: false);
     if (_viewModel.user != null) {
       final String _userId = _viewModel.user!.userId!;
-      final _noteMethods = NoteMethods();
+      final _noteMethods = ViewNoteMethods();
       await _noteMethods.postNoteBook(
           relationId: _userId, tableName: 'note_books');
     }

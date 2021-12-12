@@ -1,5 +1,5 @@
 import 'package:bot_2000/core/models/notes/note.dart';
-import 'package:bot_2000/core/view_model/note_methods.dart';
+import 'package:bot_2000/core/view_model/view_note_methods.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/view/components/home_components/right_side/components/card_components/card_bottom.dart';
 
@@ -18,7 +18,7 @@ class RightArea extends StatelessWidget {
     final _noteViewModel = Provider.of<NoteViewModel>(context);
     if (_noteViewModel.currentNote != null) {
       Note _note = _noteViewModel.currentNote!;
-      final noteMethods = NoteMethods();
+      final noteMethods = ViewNoteMethods();
       return SizedBox(
         width: 300,
         child: Column(
@@ -41,8 +41,8 @@ class RightArea extends StatelessWidget {
               ),
             ),
             RightBottom(
-              createdAt: _note.createdAt!,
-              lastUpdate: _note.lastUpdate!,
+              createdAt: _note.createdAt!.toString(),
+              lastUpdate: _note.lastUpdate!.toString(),
             )
           ],
         ),

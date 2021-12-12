@@ -24,7 +24,7 @@ class RightBottom extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                'Şu tarihte oluşturuldu: $createdAt',
+                'Oluşturuldu: $createdAt',
                 style: Theme.of(context).textTheme.caption,
               ),
               IconButton(

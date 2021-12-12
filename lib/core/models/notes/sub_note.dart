@@ -6,8 +6,8 @@ class SubNote {
   String? text;
   bool? isComplete;
   bool? isVisible;
-  String? createdAt;
-
+  DateTime? createdAt;
+  int? sequence;
   SubNote({
     this.subNoteId,
     this.relNoteId,
@@ -15,27 +15,30 @@ class SubNote {
     this.isComplete,
     this.isVisible,
     this.createdAt,
+    this.sequence,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'subNoteId': subNoteId,
-      'relNoteId': relNoteId,
+      'subnote_it': subNoteId,
+      'rel_note_id': relNoteId,
       'text': text,
-      'isComplete': isComplete,
-      'isVisible': isVisible,
-      'createdAt': createdAt,
+      'is_complete': isComplete,
+      'is_visible': isVisible,
+      'created_at': createdAt,
+      'sequence': sequence,
     };
   }
 
   factory SubNote.fromMap(Map<String, dynamic> map) {
     return SubNote(
-      subNoteId: map['subNoteId'],
-      relNoteId: map['relNoteId'],
+      subNoteId: map['subnote_it'].toString(),
+      relNoteId: map['rel_note_id'].toString(),
       text: map['text'],
-      isComplete: map['isComplete'],
-      isVisible: map['isVisible'],
-      createdAt: map['createdAt'],
+      isComplete: map['is_complete'],
+      isVisible: map['is_visible'],
+      createdAt: map['created_at'],
+      sequence: map['sequence'],
     );
   }
 

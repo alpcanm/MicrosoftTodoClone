@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bot_2000/core/abstraction/user_logic.dart';
 import 'package:bot_2000/core/models/user.dart';
-import 'package:bot_2000/core/packages/get_it.dart';
+import 'package:bot_2000/core/get_it/get_it.dart';
 import 'package:bot_2000/core/repository.dart';
 import 'package:flutter/cupertino.dart';
 

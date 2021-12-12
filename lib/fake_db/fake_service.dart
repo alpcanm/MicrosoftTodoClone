@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:bot_2000/core/models/notes/note_book.dart';
 import 'package:bot_2000/core/models/user.dart';
-import 'package:bot_2000/core/packages/get_it.dart';
+import 'package:bot_2000/core/get_it/get_it.dart';
 import 'package:bot_2000/fake_db/fake_api.dart';
 
 class FakeService {
