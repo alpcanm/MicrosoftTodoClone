@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:bot_2000/core/view_model/view_note_methods.dart';
 
 class CenterBottom extends StatefulWidget {

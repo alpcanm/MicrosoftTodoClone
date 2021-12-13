@@ -29,9 +29,9 @@ class ViewModel with ChangeNotifier implements UserLogic {
 
   void _setTheme(ThemeState themeState) {
     if (themeState == ThemeState.light) {
-      themeData = ThemeData.light();
+      themeData = ToDoTheme.light();
     } else {
-      themeData = ThemeData.dark();
+      themeData = ToDoTheme.dark();
     }
   }
 

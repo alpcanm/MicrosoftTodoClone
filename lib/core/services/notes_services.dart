@@ -4,6 +4,7 @@ import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:bot_2000/core/models/notes/note_book.dart';
 import 'package:bot_2000/core/models/notes/sub_note.dart';
 import 'package:dio/dio.dart';
+import 'dart:convert';
 
 class NoteServices implements NotesLogic {
   final BaseOptions _baseOptions = BaseOptions();
@@ -147,8 +148,16 @@ class NoteServices implements NotesLogic {
 
   @override
   Future<bool> updateField(
-      {String? relationId, required String tableName, required field}) {
-    // TODO: implement updateText
-    throw UnimplementedError();
+      {String? relationId,
+      required String tableName,
+      required field,
+      required String columnName}) async {
+    Map _data = {columnName: field};
+    try {
+      await _dio.patch('$tableName/$relationId', data: jsonEncode(_data));
+    } catch (e) {
+      print(e);
+    }
+    return true;
   }
 }

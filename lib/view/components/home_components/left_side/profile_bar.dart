@@ -25,21 +25,25 @@ class _ProfileBarState extends State<ProfileBar> {
           child: FlutterLogo(),
         ),
         subtitle: Text(_user.mail!),
-        trailing: Switch(
-            value: _switchState,
-            onChanged: (value) {
-              setState(() {
-                _switchState = value;
-              });
-              if (!_switchState) {
-                _viewModel.themeState = ThemeState.light;
-              } else {
-                _viewModel.themeState = ThemeState.dark;
-              }
-            }),
+        trailing: themeSwitch(_viewModel),
       );
     } else {
       return const SizedBox();
     }
+  }
+
+  Widget themeSwitch(ViewModel _viewModel) {
+    return Switch(
+        value: _switchState,
+        onChanged: (value) {
+          setState(() {
+            _switchState = value;
+          });
+          if (!_switchState) {
+            _viewModel.themeState = ThemeState.light;
+          } else {
+            _viewModel.themeState = ThemeState.dark;
+          }
+        });
   }
 }

@@ -1,6 +1,7 @@
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:bot_2000/view/components/home_components/center/bottom/center_bottom.dart';
 import 'package:bot_2000/view/components/home_components/center/top/center_stream.dart';
+import 'package:bot_2000/view/components/home_components/center/top/components/center_header.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,7 @@ class CenterArea extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: _viewModel.noteBookId != ''
             ? [
+                const CenterHeader(),
                 const Flexible(child: CenterStream()),
                 SizedBox(
                     height: 150,
