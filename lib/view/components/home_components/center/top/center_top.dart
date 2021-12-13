@@ -1,6 +1,9 @@
+import 'package:bot_2000/core/view_model/note_viewmodel.dart';
+import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:bot_2000/view/components/home_components/center/top/components/note_button.dart';
 import 'package:flutter/material.dart';
 import 'package:bot_2000/core/models/notes/note.dart';
+import 'package:provider/provider.dart';
 
 class NoteTable extends StatefulWidget {
   const NoteTable({
@@ -15,6 +18,7 @@ class NoteTable extends StatefulWidget {
 class _NoteTableState extends State<NoteTable> {
   @override
   Widget build(BuildContext context) {
+    final _viewModel = Provider.of<ViewModel>(context);
     List<Note?> _notes = widget.notes;
     if (_notes.isNotEmpty) {
       return Container(
@@ -25,8 +29,8 @@ class _NoteTableState extends State<NoteTable> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Data Title',
-                style: Theme.of(context).textTheme.headline1,
+                _viewModel.noteBookText,
+                style: Theme.of(context).textTheme.headline3,
               ),
             ),
             ListView.builder(

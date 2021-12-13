@@ -72,6 +72,7 @@ class LeftArea extends StatelessWidget {
                 final _noteViewModel =
                     Provider.of<NoteViewModel>(context, listen: false);
                 _viewModel.noteBookId = _noteBook?.noteBookId ?? "Boş";
+                _viewModel.noteBookText = _noteBook?.text ?? "Boş";
                 _noteViewModel.currentNote = null;
               },
             );

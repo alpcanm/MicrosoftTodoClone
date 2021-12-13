@@ -3,7 +3,10 @@ import 'package:bot_2000/core/abstraction/user_logic.dart';
 import 'package:bot_2000/core/models/user.dart';
 import 'package:bot_2000/core/get_it/get_it.dart';
 import 'package:bot_2000/core/repository.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bot_2000/view/theme/theme.dart';
+import 'package:flutter/material.dart';
+
+enum ThemeState { dark, light }
 
 class ViewModel with ChangeNotifier implements UserLogic {
   final Repository _repository = getIt<Repository>();
@@ -17,6 +20,29 @@ class ViewModel with ChangeNotifier implements UserLogic {
     notifyListeners();
   }
 
+  ThemeData _themeData = ToDoTheme.light();
+  ThemeData get themeData => _themeData;
+  set themeData(ThemeData themeData) {
+    _themeData = themeData;
+    notifyListeners();
+  }
+
+  void _setTheme(ThemeState themeState) {
+    if (themeState == ThemeState.light) {
+      themeData = ThemeData.light();
+    } else {
+      themeData = ThemeData.dark();
+    }
+  }
+
+  ThemeState _themeState = ThemeState.light;
+  ThemeState get themeState => _themeState;
+  set themeState(ThemeState themeState) {
+    _themeState = themeState;
+    _setTheme(_themeState);
+    notifyListeners();
+  }
+
   String _noteBookId = '';
   String get noteBookId => _noteBookId;
   set noteBookId(String noteBookId) {
@@ -24,6 +50,12 @@ class ViewModel with ChangeNotifier implements UserLogic {
     notifyListeners();
   }
 
+  String _noteBookText = '';
+  String get noteBookText => _noteBookText;
+  set noteBookText(String noteBookText) {
+    _noteBookText = noteBookText;
+    notifyListeners();
+  }
 
   @override
   Future<User?> getCurrentUser() async {

@@ -12,6 +12,7 @@ class ProfileBar extends StatefulWidget {
 }
 
 class _ProfileBarState extends State<ProfileBar> {
+  bool _switchState = false;
   @override
   Widget build(BuildContext context) {
     final _viewModel = Provider.of<ViewModel>(context);
@@ -24,6 +25,18 @@ class _ProfileBarState extends State<ProfileBar> {
           child: FlutterLogo(),
         ),
         subtitle: Text(_user.mail!),
+        trailing: Switch(
+            value: _switchState,
+            onChanged: (value) {
+              setState(() {
+                _switchState = value;
+              });
+              if (!_switchState) {
+                _viewModel.themeState = ThemeState.light;
+              } else {
+                _viewModel.themeState = ThemeState.dark;
+              }
+            }),
       );
     } else {
       return const SizedBox();

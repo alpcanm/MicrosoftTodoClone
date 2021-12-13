@@ -14,7 +14,7 @@ class CardBottom extends StatelessWidget {
         children: [
           Text(
             'Yorum',
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.headline5,
           ),
           const Divider(
             indent: 50,

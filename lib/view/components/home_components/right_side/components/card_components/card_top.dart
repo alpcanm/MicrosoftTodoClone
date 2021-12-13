@@ -26,7 +26,7 @@ class CardTop extends StatelessWidget {
           children: [
             Text(
               note.text ?? '',
-              style: Theme.of(context).textTheme.headline2,
+              style: Theme.of(context).textTheme.headline5,
             ),
             const Divider(
               color: Colors.transparent,
