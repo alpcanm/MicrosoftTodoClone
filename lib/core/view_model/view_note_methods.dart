@@ -20,21 +20,19 @@ class ViewNoteMethods implements NotesLogic {
   @override
   Future<bool> postNoteBook({
     String? relationId,
-    required String tableName,
   }) {
-    return _repository.postNoteBook(
-        tableName: tableName, relationId: relationId);
+    return _repository.postNoteBook(relationId: relationId);
   }
 
   @override
   Future<bool> updateField(
       {String? relationId,
       required String tableName,
-      required field,
+      required value,
       required String columnName}) {
     return _repository.updateField(
         tableName: tableName,
-        field: field,
+        value: value,
         relationId: relationId,
         columnName: columnName);
   }

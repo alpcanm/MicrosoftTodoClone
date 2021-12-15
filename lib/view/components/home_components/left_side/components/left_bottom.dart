@@ -30,7 +30,7 @@ class LeftBottom extends StatelessWidget {
       final String _userId = _viewModel.user!.userId!;
       final _noteMethods = ViewNoteMethods();
       await _noteMethods.postNoteBook(
-          relationId: _userId, tableName: 'note_books');
+          relationId: _userId);
     }
   }
 }

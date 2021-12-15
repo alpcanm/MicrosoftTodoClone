@@ -38,7 +38,7 @@ class NoteServices implements NotesLogic {
 
   @override
   Future<bool> postNoteBook(
-      {String? relationId, required String tableName}) async {
+      {String? relationId}) async {
     await Future.delayed(const Duration(milliseconds: 500));
     final DateTime _now = DateTime.now();
     final NoteBook _noteBook = NoteBook(
@@ -150,9 +150,9 @@ class NoteServices implements NotesLogic {
   Future<bool> updateField(
       {String? relationId,
       required String tableName,
-      required field,
+      required value,
       required String columnName}) async {
-    Map _data = {columnName: field};
+    Map _data = {columnName: value};
     try {
       await _dio.patch('$tableName/$relationId', data: jsonEncode(_data));
     } catch (e) {

@@ -3,10 +3,11 @@ import 'package:bot_2000/core/models/user.dart';
 import 'package:bot_2000/core/view_model/view_note_methods.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
-import 'package:bot_2000/view/components/home_components/left_side/left_bottom.dart';
-import 'package:bot_2000/view/components/home_components/left_side/notebook_button.dart';
-import 'package:bot_2000/view/components/home_components/left_side/profile_bar.dart';
-import 'package:bot_2000/view/components/stream_builder.dart';
+import 'package:bot_2000/view/components/home_components/left_side/components/left_bottom.dart';
+import 'package:bot_2000/view/components/home_components/left_side/components/notebook_button.dart';
+import 'package:bot_2000/view/components/home_components/left_side/components/profile_bar.dart';
+import 'package:bot_2000/view/widgets/stream_builder.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,5 +1,6 @@
+import 'package:bot_2000/core/keys.dart';
+import 'package:bot_2000/view/widgets/text_and_field.dart';
 import 'package:flutter/material.dart';
-
 import 'package:bot_2000/core/models/notes/note.dart';
 
 class CardTop extends StatelessWidget {
@@ -24,9 +25,12 @@ class CardTop extends StatelessWidget {
         ),
         Column(
           children: [
-            Text(
-              note.text ?? '',
-              style: Theme.of(context).textTheme.headline5,
+            TextAndField(
+              text: note.text!,
+              textStyle: Theme.of(context).textTheme.headline5!,
+              columnName: Keys.columnText,
+              relationId: note.noteId!,
+              tableName: Keys.tableNotes,
             ),
             const Divider(
               color: Colors.transparent,
@@ -44,6 +48,7 @@ class CardTop extends StatelessWidget {
   Widget subNotes() {
     return ListView.builder(
       shrinkWrap: true,
+      itemCount: note.subNotes?.length ?? 0,
       itemBuilder: (context, index) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +62,6 @@ class CardTop extends StatelessWidget {
           ],
         );
       },
-      itemCount: note.subNotes?.length ?? 0,
     );
   }
 
@@ -71,9 +75,12 @@ class CardTop extends StatelessWidget {
         ),
         splashRadius: 12,
       ),
-      title: Text(
-        note.subNotes?[index]?.text ?? 'bune',
-        style: Theme.of(context).textTheme.subtitle2,
+      title: TextAndField(
+        text: note.subNotes?[index]?.text ?? "",
+        columnName: Keys.columnText,
+        relationId: note.subNotes?[index]!.subNoteId ?? "",
+        tableName: Keys.tableSubnotes,
+        textStyle: Theme.of(context).textTheme.subtitle2!,
       ),
     );
   }

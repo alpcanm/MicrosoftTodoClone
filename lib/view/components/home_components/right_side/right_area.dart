@@ -4,7 +4,8 @@ import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/view/components/home_components/right_side/components/card_components/card_bottom.dart';
 
 import 'package:bot_2000/view/components/home_components/right_side/components/right_bottom.dart';
-import 'package:bot_2000/view/components/stream_builder.dart';
+import 'package:bot_2000/view/widgets/stream_builder.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

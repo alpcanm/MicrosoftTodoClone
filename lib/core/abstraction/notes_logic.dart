@@ -6,14 +6,14 @@ abstract class NotesLogic {
   Stream<List<Note?>>? getNotes(String relNoteBookId);
 
   Future<bool> postNoteBook(
-      {required String relationId, required String tableName});
+      {required String relationId});
   Future<bool> postNote({required String relationId, required String text});
   Future<bool> postSubNote({required String relationId, required String text});
 
   Future<bool> updateField(
       {String? relationId,
       required String tableName,
-      required field,
+      required value,
       required String columnName});
 
   Stream<Note?> getANote(String noteId);

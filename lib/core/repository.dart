@@ -30,20 +30,20 @@ class Repository implements UserLogic, NotesLogic {
   }
 
   @override
-  Future<bool> postNoteBook({String? relationId, required String tableName}) {
+  Future<bool> postNoteBook({String? relationId}) {
     return _noteServices.postNoteBook(
-        tableName: tableName, relationId: relationId);
+        relationId: relationId);
   }
 
   @override
   Future<bool> updateField(
       {String? relationId,
       required String tableName,
-      required field,
+      required value,
       required String columnName}) {
     return _noteServices.updateField(
         tableName: tableName,
-        field: field,
+        value: value,
         relationId: relationId,
         columnName: columnName);
   }
