@@ -11,7 +11,7 @@ abstract class NotesLogic {
   Future<bool> postSubNote({required String relationId, required String text});
 
   Future<bool> updateField(
-      {String? relationId,
+      {required String relationId,
       required String tableName,
       required value,
       required String columnName});

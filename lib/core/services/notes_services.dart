@@ -111,7 +111,7 @@ class NoteServices implements NotesLogic {
             .where((element) => element!.noteId == noteId ? true : false)
             .toList()
             .first;
-        await Future.delayed(const Duration(milliseconds: 500));
+       
         Response _response = await _dio.get('/subnotes/$noteId');
         List _list = _response.data;
         List<SubNote> _subNoteList = _list.map((e) {
@@ -148,7 +148,7 @@ class NoteServices implements NotesLogic {
 
   @override
   Future<bool> updateField(
-      {String? relationId,
+      {required String relationId,
       required String tableName,
       required value,
       required String columnName}) async {

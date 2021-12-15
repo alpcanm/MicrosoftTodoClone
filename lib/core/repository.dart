@@ -37,7 +37,7 @@ class Repository implements UserLogic, NotesLogic {
 
   @override
   Future<bool> updateField(
-      {String? relationId,
+      {required String relationId,
       required String tableName,
       required value,
       required String columnName}) {

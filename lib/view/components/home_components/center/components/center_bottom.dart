@@ -26,14 +26,7 @@ class _CenterBottomState extends State<CenterBottom> {
             key: _formKey,
             child: ListTile(
               leading: IconButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    final _noteMethods = ViewNoteMethods();
-                    await _noteMethods.postNote(
-                        relationId: widget.notebookId, text: _controller.text);
-                    _controller.clear();
-                  }
-                },
+                onPressed: () => _postData(),
                 icon: const Icon(
                   Icons.add,
                   size: 28,
@@ -43,6 +36,7 @@ class _CenterBottomState extends State<CenterBottom> {
               title: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  onEditingComplete: () => _postData(),
                   controller: _controller,
                   style: Theme.of(context).textTheme.bodyText1,
                   validator: (value) {
@@ -59,5 +53,14 @@ class _CenterBottomState extends State<CenterBottom> {
         ),
       ),
     );
+  }
+
+  void _postData() async {
+    if (_formKey.currentState!.validate()) {
+      final _noteMethods = ViewNoteMethods();
+      await _noteMethods.postNote(
+          relationId: widget.notebookId, text: _controller.text);
+      _controller.clear();
+    }
   }
 }
