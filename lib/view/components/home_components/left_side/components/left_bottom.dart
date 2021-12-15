@@ -1,4 +1,3 @@
-
 import 'package:bot_2000/core/view_model/view_note_methods.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +16,11 @@ class LeftBottom extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: TextButton.icon(
               onPressed: () => postNoteBook(context),
-              icon: const Icon(Icons.add_box_sharp),
-              label: const Text('Yeni not defteri ekle')),
+              icon: Icon(
+                Icons.add_box_sharp,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              label:  Text('Yeni not defteri ekle',style: Theme.of(context).textTheme.bodyText1)),
         )
       ],
     ));
@@ -29,8 +31,7 @@ class LeftBottom extends StatelessWidget {
     if (_viewModel.user != null) {
       final String _userId = _viewModel.user!.userId!;
       final _noteMethods = ViewNoteMethods();
-      await _noteMethods.postNoteBook(
-          relationId: _userId);
+      await _noteMethods.postNoteBook(relationId: _userId);
     }
   }
 }

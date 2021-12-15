@@ -15,6 +15,5 @@ abstract class NotesLogic {
       required String tableName,
       required value,
       required String columnName});
-
   Stream<Note?> getANote(String noteId);
 }

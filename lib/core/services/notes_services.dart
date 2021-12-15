@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:bot_2000/core/abstraction/notes_logic.dart';
+import 'package:bot_2000/core/keys.dart';
 import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:bot_2000/core/models/notes/note_book.dart';
 import 'package:bot_2000/core/models/notes/sub_note.dart';
+import 'package:bot_2000/core/network/config.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
 
@@ -10,7 +12,7 @@ class NoteServices implements NotesLogic {
   final BaseOptions _baseOptions = BaseOptions();
   final Dio _dio = Dio();
   NoteServices() {
-    _baseOptions.baseUrl = 'http://127.0.0.1:5000/';
+    _baseOptions.baseUrl = NetworkConfig.baseUrl;
     _dio.options = _baseOptions;
   }
   List<Note?> _notes = [];
@@ -20,7 +22,7 @@ class NoteServices implements NotesLogic {
     try {
       Timer.periodic(const Duration(milliseconds: 2000), (Timer t) async {
         List<NoteBook?> _noteBooks = [];
-        Response _response = await _dio.get('/notebooks/$userId');
+        Response _response = await _dio.get('/${Keys.tableNotebooks}/$userId');
         List list = _response.data;
 
         for (var element in list) {
@@ -37,8 +39,7 @@ class NoteServices implements NotesLogic {
   }
 
   @override
-  Future<bool> postNoteBook(
-      {String? relationId}) async {
+  Future<bool> postNoteBook({String? relationId}) async {
     await Future.delayed(const Duration(milliseconds: 500));
     final DateTime _now = DateTime.now();
     final NoteBook _noteBook = NoteBook(
@@ -51,7 +52,7 @@ class NoteServices implements NotesLogic {
         noteBookId: "",
         sequence: 1);
     try {
-      await _dio.post('/notebooks', data: _noteBook.toJson());
+      await _dio.post('/${Keys.tableNotebooks}', data: _noteBook.toJson());
     } on DioError catch (e) {
       print(e.message);
     }
@@ -63,7 +64,7 @@ class NoteServices implements NotesLogic {
     try {
       while (true) {
         await Future.delayed(const Duration(milliseconds: 500));
-        Response _response = await _dio.get('/notes/$relNoteBookId');
+        Response _response = await _dio.get('/${Keys.tableNotes}/$relNoteBookId');
         List _list = _response.data;
         _notes = _list.map((e) {
           Note _note = Note.fromMap(e);
@@ -95,7 +96,7 @@ class NoteServices implements NotesLogic {
         sequence: 1);
 
     try {
-      await _dio.post('/notes', data: _note.toJson());
+      await _dio.post('/${Keys.tableNotes}', data: _note.toJson());
     } on DioError catch (e) {
       print(e.message);
     }
@@ -111,8 +112,8 @@ class NoteServices implements NotesLogic {
             .where((element) => element!.noteId == noteId ? true : false)
             .toList()
             .first;
-       
-        Response _response = await _dio.get('/subnotes/$noteId');
+
+        Response _response = await _dio.get('/${Keys.tableSubnotes}/$noteId');
         List _list = _response.data;
         List<SubNote> _subNoteList = _list.map((e) {
           SubNote _subnote = SubNote.fromMap(e);
@@ -139,7 +140,7 @@ class NoteServices implements NotesLogic {
         subNoteId: "",
         text: text);
     try {
-      await _dio.post('/subnotes', data: _subNote.toJson());
+      await _dio.post('/${Keys.tableSubnotes}', data: _subNote.toJson());
     } on DioError catch (e) {
       print(e.message);
     }

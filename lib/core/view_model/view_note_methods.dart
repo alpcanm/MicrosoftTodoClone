@@ -30,6 +30,8 @@ class ViewNoteMethods implements NotesLogic {
       required String tableName,
       required value,
       required String columnName}) {
+
+      
     return _repository.updateField(
         tableName: tableName,
         value: value,
@@ -51,4 +53,6 @@ class ViewNoteMethods implements NotesLogic {
   Stream<Note?> getANote(String noteId) {
     return _repository.getANote(noteId);
   }
+
+ 
 }

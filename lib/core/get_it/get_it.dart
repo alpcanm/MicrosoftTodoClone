@@ -1,3 +1,4 @@
+import 'package:bot_2000/core/extra_methods/extra_methods.dart';
 import 'package:bot_2000/core/repository.dart';
 import 'package:bot_2000/core/services/notes_services.dart';
 import 'package:bot_2000/core/services/user_services.dart';
@@ -13,4 +14,5 @@ void setupGetIt() {
   getIt.registerLazySingleton(() => Repository());
   getIt.registerLazySingleton(() => UserServices());
   getIt.registerLazySingleton(() => NoteServices());
+  getIt.registerLazySingleton(() => ExtraMethods());
 }

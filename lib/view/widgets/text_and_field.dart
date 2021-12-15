@@ -67,10 +67,12 @@ class _TextAndFieldState extends State<TextAndField> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      onHover: onHover,
-      child: child,
+    return Flexible(
+      child: InkWell(
+        onTap: onTap,
+        onHover: onHover,
+        child: child,
+      ),
     );
   }
 

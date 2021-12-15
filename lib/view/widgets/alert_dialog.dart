@@ -46,7 +46,6 @@ class MyAlertDialogWidget extends StatelessWidget {
         TextButton(
           child: Text(ConstTexts.iptal),
           onPressed: () {
-            onApprove.call();
             Navigator.of(context).pop();
           },
         ),
