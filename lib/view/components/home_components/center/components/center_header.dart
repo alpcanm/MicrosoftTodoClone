@@ -1,4 +1,5 @@
 import 'package:bot_2000/core/keys.dart';
+import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_note_methods.dart';
 import 'package:bot_2000/view/widgets/alert_dialog.dart';
 import 'package:bot_2000/view/widgets/text_and_field.dart';
@@ -22,15 +23,17 @@ class _CenterHeaderState extends State<CenterHeader> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          TextAndField(
-            textStyle: Theme.of(context).textTheme.headline1!,
-            text: _viewModel.noteBookText,
-            columnName: Keys.columnText,
-            tableName: Keys.tableNotebooks,
-            relationId: _viewModel.noteBookId,
-            callback: (value) {
-              _viewModel.noteBookText = value;
-            },
+          Flexible(
+            child: TextAndField(
+              textStyle: Theme.of(context).textTheme.headline1!,
+              text: _viewModel.noteBookText,
+              columnName: Keys.columnText,
+              tableName: Keys.tableNotebooks,
+              relationId: _viewModel.noteBookId,
+              callback: (value) {
+                _viewModel.noteBookText = value;
+              },
+            ),
           ),
           IconButton(
             onPressed: () => _deleteNotebook(),
@@ -49,6 +52,7 @@ class _CenterHeaderState extends State<CenterHeader> {
   void _deleteNotebook() {
     final _noteMethod = ViewNoteMethods();
     final _viewModel = Provider.of<ViewModel>(context, listen: false);
+    final _viewModelNote = Provider.of<NoteViewModel>(context, listen: false);
 
     MyAlertDialog.showMyDialog(
         context: context,
@@ -59,6 +63,7 @@ class _CenterHeaderState extends State<CenterHeader> {
               value: false,
               columnName: Keys.columnIsVisible);
           _viewModel.noteBookId = '';
+          _viewModelNote.currentNote = null;
         },
         text: _viewModel.noteBookText);
   }

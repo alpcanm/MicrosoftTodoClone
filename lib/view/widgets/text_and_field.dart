@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:bot_2000/core/view_model/view_note_methods.dart';
 
 class TextAndField extends StatefulWidget {
@@ -16,7 +17,9 @@ class TextAndField extends StatefulWidget {
   final String tableName;
   final String relationId;
   final TextStyle textStyle;
+
   final Function(dynamic callBack)? callback;
+
   @override
   _TextAndFieldState createState() => _TextAndFieldState();
 }
@@ -56,6 +59,7 @@ class _TextAndFieldState extends State<TextAndField> {
 
   onEditingComplete() {
     final _noteMethods = ViewNoteMethods();
+
     _noteMethods.updateField(
         relationId: widget.relationId,
         tableName: widget.tableName,
@@ -67,12 +71,10 @@ class _TextAndFieldState extends State<TextAndField> {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: InkWell(
-        onTap: onTap,
-        onHover: onHover,
-        child: child,
-      ),
+    return InkWell(
+      onTap: onTap,
+      onHover: onHover,
+      child: child,
     );
   }
 

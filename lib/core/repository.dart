@@ -43,9 +43,6 @@ class Repository implements UserLogic, NotesLogic {
       required String tableName,
       required value,
       required String columnName}) {
-    if (tableName == Keys.tableNotes || tableName == Keys.tableSubnotes) {
-      _extraMetghods.lastUpdateNote(relationId);
-    }
     return _noteServices.updateField(
         tableName: tableName,
         value: value,

@@ -24,11 +24,6 @@ class RightBottom extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8.0),
       child: SizedBox(
         child: Column(children: [
-          Text(
-            'Son güncelleme: $lastUpdate',
-            style: Theme.of(context).textTheme.caption,
-            textAlign: TextAlign.center,
-          ),
           const Divider(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
