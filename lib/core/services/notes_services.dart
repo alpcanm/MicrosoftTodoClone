@@ -17,10 +17,10 @@ class NoteServices implements NotesLogic {
   }
   List<Note?> _notes = [];
   @override
-  Stream<List<NoteBook?>> getNoteBooks(String userId) {
-    StreamController<List<NoteBook?>> _streamController = StreamController();
+  Stream<List<NoteBook?>> getNoteBooks(String userId) async* {
     try {
-      Timer.periodic(const Duration(milliseconds: 2000), (Timer t) async {
+      while (true) {
+        await Future.delayed(const Duration(milliseconds: 500));
         List<NoteBook?> _noteBooks = [];
         Response _response = await _dio.get('/${Keys.tableNotebooks}/$userId');
         List list = _response.data;
@@ -30,12 +30,11 @@ class NoteServices implements NotesLogic {
 
           _noteBooks.add(noteBook);
         }
-        _streamController.sink.add(_noteBooks);
-      });
+        yield _noteBooks;
+      }
     } catch (e) {
       print(e);
     }
-    return _streamController.stream;
   }
 
   @override
@@ -64,7 +63,8 @@ class NoteServices implements NotesLogic {
     try {
       while (true) {
         await Future.delayed(const Duration(milliseconds: 500));
-        Response _response = await _dio.get('/${Keys.tableNotes}/$relNoteBookId');
+        Response _response =
+            await _dio.get('/${Keys.tableNotes}/$relNoteBookId');
         List _list = _response.data;
         _notes = _list.map((e) {
           Note _note = Note.fromMap(e);

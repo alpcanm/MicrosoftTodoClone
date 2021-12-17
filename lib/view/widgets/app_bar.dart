@@ -31,6 +31,6 @@ class ToDoAppBar extends StatelessWidget implements PreferredSizeWidget {
   void _logOut(BuildContext context) {
     final _viewModel = Provider.of<ViewModel>(context, listen: false);
     _viewModel.logOut();
-    context.router.navigateNamed('/');
+    context.router.replaceNamed('/');
   }
 }

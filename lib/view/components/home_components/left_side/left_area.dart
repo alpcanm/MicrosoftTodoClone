@@ -83,4 +83,5 @@ class LeftArea extends StatelessWidget {
       },
     );
   }
+  
 }

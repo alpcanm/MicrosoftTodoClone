@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       final _viewModel = Provider.of<ViewModel>(context, listen: false);
       await _viewModel.getCurrentUser().then((value) {
-        context.router.navigateNamed('/home-page');
+        context.router.replaceNamed('/home-page');
       });
     }
   }

@@ -6,6 +6,9 @@ import 'package:bot_2000/core/repository.dart';
 
 class ViewNoteMethods implements NotesLogic {
   final Repository _repository = getIt<Repository>();
+  String check = "00";
+
+  _logOut() {}
 
   @override
   Stream<List<NoteBook?>> getNoteBooks(String userId) {
@@ -30,8 +33,6 @@ class ViewNoteMethods implements NotesLogic {
       required String tableName,
       required value,
       required String columnName}) {
-
-      
     return _repository.updateField(
         tableName: tableName,
         value: value,
@@ -53,6 +54,4 @@ class ViewNoteMethods implements NotesLogic {
   Stream<Note?> getANote(String noteId) {
     return _repository.getANote(noteId);
   }
-
- 
 }
