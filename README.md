@@ -20,9 +20,9 @@ Not: Bu proje flask https://github.com/alpcanm/flask_api projesi ile bağlantıl
 
 
 ## Ürünün son hali.
-![This is an image](readme_image/image1.png)
-![This is an image](readme_image/image2.png)
-![This is an image](readme_image/image3.png)
+![This is an image](readme_image/image1.PNG)
+![This is an image](readme_image/image2.PNG)
+![This is an image](readme_image/image3.PNG)
 ## Kullanılan flutter paketleri
 
 - :white_circle: Shared Preferences (Siyah beyaz tema çerezleri) // Aktif değil
