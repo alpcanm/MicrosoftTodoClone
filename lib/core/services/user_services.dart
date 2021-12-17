@@ -7,4 +7,10 @@ class UserServices implements UserLogic {
     // TODO: implement getCurrentUser
     throw UnimplementedError();
   }
+
+  @override
+  Future logOut() async {
+    await Future.delayed(const Duration(milliseconds: 150));
+    return null;
+  }
 }

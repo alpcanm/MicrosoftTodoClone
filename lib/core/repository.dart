@@ -1,7 +1,6 @@
 import 'package:bot_2000/core/abstraction/notes_logic.dart';
 import 'package:bot_2000/core/abstraction/user_logic.dart';
 import 'package:bot_2000/core/extra_methods/extra_methods.dart';
-import 'package:bot_2000/core/keys.dart';
 import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:bot_2000/core/models/notes/note_book.dart';
 import 'package:bot_2000/core/models/user.dart';
@@ -63,5 +62,10 @@ class Repository implements UserLogic, NotesLogic {
   @override
   Stream<Note?> getANote(String noteId) {
     return _noteServices.getANote(noteId);
+  }
+
+  @override
+  Future logOut() async {
+    return await _userServices.logOut();
   }
 }

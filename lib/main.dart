@@ -3,7 +3,6 @@ import 'package:bot_2000/core/navigation/navigation_service.dart';
 import 'package:bot_2000/core/get_it/get_it.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,9 +24,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final _viewModel = Provider.of<ViewModel>(context);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       initialRoute: '/',
-      onGenerateRoute: NavigationRoute.instance.generateRoute,
+      onGenerateRoute: (RouteSettings args) =>
+          NavigationRoute.instance.generateRoute(args),
       navigatorKey: NavigationService.instance.navigatorKey,
       theme: _viewModel.themeData,
     );

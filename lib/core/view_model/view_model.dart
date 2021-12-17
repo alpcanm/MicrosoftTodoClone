@@ -62,4 +62,10 @@ class ViewModel with ChangeNotifier implements UserLogic {
     user = await _repository.getCurrentUser();
     return user;
   }
+
+  @override
+  Future logOut() async {
+    user = await _repository.logOut();
+    return user;
+  }
 }

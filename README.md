@@ -1,7 +1,7 @@
 # //TODO List
 
 Microsoft To Do uygulamasının flutter klonunu yapmaya çalışıyorum.
-
+Not: Bu proje flask https://github.com/alpcanm/flask_api projesi ile bağlantılıdır.
 
 ## Uyuglama şunları içermelidir.
 
@@ -17,8 +17,15 @@ Microsoft To Do uygulamasının flutter klonunu yapmaya çalışıyorum.
 - Authantication servisi. (Henüz belirlenmedi)
 ## Ürünün ilk taslağı.
 ![This is an image](readme_image/taslak1.png)
+
+
+## Ürünün son hali.
+![This is an image](readme_image/iamage1.PNG)
+![This is an image](readme_image/iamage2.PNG)
+![This is an image](readme_image/iamage3.PNG)
 ## Kullanılan flutter paketleri
 
-- :white_circle: Shared Preferences (Siyah beyaz tema çerezleri)
+- :white_circle: Shared Preferences (Siyah beyaz tema çerezleri) // Aktif değil
 - :white_circle: Sadece http methodları.[Dio] (Servise özel paket kullanılmayacak. Paket bağımlılığını azaltma amaçlı.)
 - :white_circle: Provider (state management)
+
