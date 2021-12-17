@@ -1,5 +1,5 @@
-import 'package:bot_2000/core/navigation/navigation_route.dart';
-import 'package:bot_2000/core/navigation/navigation_service.dart';
+import 'package:bot_2000/core/auto_route/auto_route.gr.dart';
+
 import 'package:bot_2000/core/get_it/get_it.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 void main() {
   setupGetIt();
   runApp(MultiProvider(
-    child: const MyApp(),
+    child: MyApp(),
     providers: [
       ChangeNotifierProvider(create: (context) => ViewModel()),
       ChangeNotifierProvider(create: (context) => NoteViewModel()),
@@ -18,18 +18,16 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  MyApp({Key? key}) : super(key: key);
+  final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
     final _viewModel = Provider.of<ViewModel>(context);
-    return MaterialApp(
+    return MaterialApp.router(
+      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerDelegate: _appRouter.delegate(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: '/',
-      onGenerateRoute: (RouteSettings args) =>
-          NavigationRoute.instance.generateRoute(args),
-      navigatorKey: NavigationService.instance.navigatorKey,
       theme: _viewModel.themeData,
     );
   }

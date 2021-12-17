@@ -15,15 +15,17 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
+
   provider: ^6.0.1
   dio: ^4.0.4
   google_fonts: ^2.1.0
   get_it: ^7.2.0
-
+  auto_route: ^3.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  auto_route_generator: ^3.2.0
+  build_runner: ^2.1.7
 
   flutter_lints: ^1.0.0
 

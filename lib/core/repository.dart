@@ -1,6 +1,5 @@
 import 'package:bot_2000/core/abstraction/notes_logic.dart';
 import 'package:bot_2000/core/abstraction/user_logic.dart';
-import 'package:bot_2000/core/extra_methods/extra_methods.dart';
 import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:bot_2000/core/models/notes/note_book.dart';
 import 'package:bot_2000/core/models/user.dart';
@@ -13,7 +12,7 @@ class Repository implements UserLogic, NotesLogic {
   final FakeService _fakeService = getIt<FakeService>();
   final UserServices _userServices = getIt<UserServices>();
   final NoteServices _noteServices = getIt<NoteServices>();
-  final ExtraMethods _extraMetghods = getIt<ExtraMethods>();
+
 
   @override
   Future<User?> getCurrentUser() async {

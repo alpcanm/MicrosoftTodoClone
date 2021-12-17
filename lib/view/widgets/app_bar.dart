@@ -1,6 +1,7 @@
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:auto_route/auto_route.dart';
 
 class ToDoAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ToDoAppBar({
@@ -29,5 +30,7 @@ class ToDoAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   void _logOut(BuildContext context) {
     final _viewModel = Provider.of<ViewModel>(context, listen: false);
+    _viewModel.logOut();
+    context.router.navigateNamed('/');
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bot_2000/core/models/user.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 
@@ -14,10 +16,17 @@ class ProfileBar extends StatefulWidget {
 class _ProfileBarState extends State<ProfileBar> {
   bool _switchState = false;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("profile init");
+  }
+
+  @override
   Widget build(BuildContext context) {
     final _viewModel = Provider.of<ViewModel>(context);
     User? _user = _viewModel.user;
-
+    print("profile");
     if (_user != null) {
       return ListTile(
         title: Text(_user.name!),
@@ -45,5 +54,13 @@ class _ProfileBarState extends State<ProfileBar> {
             _viewModel.themeState = ThemeState.dark;
           }
         });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    print("profile dispose");
   }
 }
