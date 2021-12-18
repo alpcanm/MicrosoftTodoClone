@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bot_2000/core/auto_route/route_const.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:bot_2000/view/components/strings/strings.dart';
 import 'package:flutter/material.dart';
@@ -17,15 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print("İNİT");
-  }
-
-  @override
   Widget build(BuildContext context) {
-    print("cBUİLD");
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
@@ -40,8 +33,16 @@ class _LoginPageState extends State<LoginPage> {
   _loginFunction() async {
     if (_formKey.currentState!.validate()) {
       final _viewModel = Provider.of<ViewModel>(context, listen: false);
-      await _viewModel.getCurrentUser().then((value) {
-        context.router.replaceNamed('/home-page');
+      _viewModel
+          .logIn(mail: _mail.text, password: "password")
+          .then((value) async {
+        if (value) {
+          await _viewModel.getCurrentUser().then((value) {
+            context.router.navigateNamed(RouteConsts.HOME_PAGE);
+          });
+        } else {
+          print("yanlış şifre");
+        }
       });
     }
   }
@@ -131,12 +132,5 @@ class _LoginPageState extends State<LoginPage> {
       label: Text(ConstTexts.password),
       border: const OutlineInputBorder(),
     );
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    print("Dispose");
   }
 }

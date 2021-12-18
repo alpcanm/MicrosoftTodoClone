@@ -1,4 +1,5 @@
 import 'package:bot_2000/core/auto_route/auto_route.gr.dart';
+import 'package:bot_2000/core/auto_route/guard.dart';
 
 import 'package:bot_2000/core/get_it/get_it.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
@@ -19,7 +20,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
-  final _appRouter = AppRouter();
+  final _appRouter = AppRouter(authGuard: AuthGuard());
   @override
   Widget build(BuildContext context) {
     final _viewModel = Provider.of<ViewModel>(context);

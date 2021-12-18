@@ -41,6 +41,7 @@ class LeftArea extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         } else {
+          print(snapshot.data);
           return const Center(
             child: SizedBox(
               child: CircularProgressIndicator(),
@@ -83,5 +84,4 @@ class LeftArea extends StatelessWidget {
       },
     );
   }
-  
 }

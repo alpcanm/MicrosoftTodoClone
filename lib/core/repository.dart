@@ -6,18 +6,17 @@ import 'package:bot_2000/core/models/user.dart';
 import 'package:bot_2000/core/get_it/get_it.dart';
 import 'package:bot_2000/core/services/notes_services.dart';
 import 'package:bot_2000/core/services/user_services.dart';
-import 'package:bot_2000/fake_db/fake_service.dart';
+
 
 class Repository implements UserLogic, NotesLogic {
-  final FakeService _fakeService = getIt<FakeService>();
+
   final UserServices _userServices = getIt<UserServices>();
   final NoteServices _noteServices = getIt<NoteServices>();
 
-
   @override
   Future<User?> getCurrentUser() async {
-    return await _fakeService.getCurrentUser();
-    // return await _userServices.getCurrentUser();
+  
+    return await _userServices.getCurrentUser();
   }
 
   @override
@@ -65,6 +64,11 @@ class Repository implements UserLogic, NotesLogic {
 
   @override
   Future logOut() async {
-    return await _userServices.logOut();
+    return _userServices.logOut();
+  }
+
+  @override
+  Future<bool> logIn({required String mail, required String password}) {
+    return _userServices.logIn(mail: mail, password: password);
   }
 }
