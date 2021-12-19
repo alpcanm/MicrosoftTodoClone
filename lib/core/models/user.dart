@@ -5,10 +5,12 @@ class User {
   String? name;
   String? surname;
   String? mail;
-  String? creatadAt;
+  DateTime? creatadAt;
   String? phoneNumber;
   String? photoURL;
-  
+  String? password;
+  bool? mailVerified;
+
   User({
     this.userId,
     this.name,
@@ -17,29 +19,35 @@ class User {
     this.creatadAt,
     this.phoneNumber,
     this.photoURL,
+    this.password,
+    this.mailVerified,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'userId': userId,
+      'user_id': userId,
       'name': name,
       'surname': surname,
       'mail': mail,
-      'creatadAt': creatadAt,
-      'phoneNumber': phoneNumber,
-      'photoURL': photoURL,
+      'created_at': creatadAt.toString(),
+      'phone_number': phoneNumber,
+      'photo_url': photoURL,
+      'password': password,
+      'mail_verified': mailVerified,
     };
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      userId: map['userId'],
+      userId: map['user_id'],
       name: map['name'],
       surname: map['surname'],
       mail: map['mail'],
-      creatadAt: map['creatadAt'],
-      phoneNumber: map['phoneNumber'],
-      photoURL: map['photoURL'],
+      creatadAt: DateTime.tryParse(map['created_at']),
+      phoneNumber: map['phone_number'],
+      photoURL: map['photo_url'],
+      password: map['password'],
+      mailVerified: map['mailVerified'],
     );
   }
 

@@ -1,43 +1,55 @@
 import 'package:bot_2000/core/abstraction/user_logic.dart';
 import 'package:bot_2000/core/models/user.dart';
-import 'package:flutter/services.dart';
+import 'package:bot_2000/core/network/config.dart';
+import 'package:dio/dio.dart';
 
 class UserServices implements UserLogic {
-  bool _isActive = false;
-
+  final BaseOptions _baseOptions = BaseOptions();
+  final Dio _dio = Dio();
   UserServices() {
-    print("isActive " + _isActive.toString());
+    _baseOptions.baseUrl = NetworkConfig.baseUrl;
+    _dio.options = _baseOptions;
   }
   @override
-  Future<User?> getCurrentUser() async {
-    await Future.delayed(Duration.zero);
-    User? _user;
-    if (_isActive) {
-      final String response = await rootBundle.loadString('fake_db/user.json');
-      _user = User.fromJson(response);
-      return _user;
-    } else {
-      return null;
-    }
-  }
+  Future<User?> getCurrentUser() async {}
 
   @override
   Future logOut() async {
     await Future.delayed(const Duration(milliseconds: 150));
-    _isActive = false;
+
     return null;
   }
 
   @override
   Future<bool> logIn({required String mail, required String password}) async {
     await Future.delayed(Duration.zero);
+    return false;
+  }
 
-    if (mail == "alpcan") {
-      _isActive = true;
-      print(_isActive);
+  @override
+  Future<bool> registerUser(
+      {required String name,
+      required String surname,
+      required String mail,
+      required String password,
+      String? phoneNumber}) async {
+    final DateTime _now = DateTime.now();
+    User _user = User(
+      phoneNumber: phoneNumber ?? '',
+      photoURL: '',
+      userId: '',
+      surname: surname,
+      creatadAt: _now,
+      mail: mail,
+      mailVerified: false,
+      name: name,
+      password: password,
+    );
+
+    try {
+      await _dio.post('/users', data: _user.toJson());
       return true;
-    } else {
-      _isActive = false;
+    } catch (e) {
       return false;
     }
   }

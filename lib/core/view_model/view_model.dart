@@ -73,4 +73,19 @@ class ViewModel with ChangeNotifier implements UserLogic {
   Future<bool> logIn({required String mail, required String password}) {
     return _repository.logIn(mail: mail, password: password);
   }
+
+  @override
+  Future<bool> registerUser(
+      {required String name,
+      required String surname,
+      required String mail,
+      required String password,
+      String? phoneNumber}) {
+    return _repository.registerUser(
+        mail: mail,
+        password: password,
+        name: name,
+        surname: surname,
+        phoneNumber: phoneNumber);
+  }
 }

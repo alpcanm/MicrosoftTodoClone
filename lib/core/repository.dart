@@ -7,15 +7,12 @@ import 'package:bot_2000/core/get_it/get_it.dart';
 import 'package:bot_2000/core/services/notes_services.dart';
 import 'package:bot_2000/core/services/user_services.dart';
 
-
 class Repository implements UserLogic, NotesLogic {
-
   final UserServices _userServices = getIt<UserServices>();
   final NoteServices _noteServices = getIt<NoteServices>();
 
   @override
   Future<User?> getCurrentUser() async {
-  
     return await _userServices.getCurrentUser();
   }
 
@@ -70,5 +67,20 @@ class Repository implements UserLogic, NotesLogic {
   @override
   Future<bool> logIn({required String mail, required String password}) {
     return _userServices.logIn(mail: mail, password: password);
+  }
+
+  @override
+  Future<bool> registerUser(
+      {required String name,
+      required String surname,
+      required String mail,
+      required String password,
+      String? phoneNumber}) {
+    return _userServices.registerUser(
+        mail: mail,
+        password: password,
+        name: name,
+        surname: surname,
+        phoneNumber: phoneNumber);
   }
 }

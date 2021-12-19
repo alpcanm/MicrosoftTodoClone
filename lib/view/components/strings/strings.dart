@@ -5,9 +5,14 @@ class ConstTexts {
   static String title = "Your //:TODO List";
   static String submit = "Giriş";
   static String register = "Kayıt Ol";
-  static String userName = "Kullanıcı Adı";
+  static String mail = "Mail";
   static String password = "Şifre";
-  static String passwordErrorMessage = 'Password must be greater than 6';
+  static String errorMessage = 'Alan boş olamaz.';
+
+
+  static String name ="İsim";
+  static String surname ="Soyisim";
+  static String phoneNumber ="Telefon (Zorunlu değil)";
 
   static String alertText(text) {
     return "$text Kalıcı olarak silenecek!";

@@ -4,4 +4,10 @@ abstract class UserLogic {
   Future<User?> getCurrentUser();
   Future<bool> logIn({required String mail, required String password});
   Future logOut();
+  Future<bool> registerUser(
+      {required String name,
+      required String surname,
+      required String mail,
+      required String password,
+      String? phoneNumber});
 }
