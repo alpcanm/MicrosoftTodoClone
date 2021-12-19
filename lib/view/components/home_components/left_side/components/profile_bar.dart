@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bot_2000/core/models/user.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 

@@ -36,14 +36,12 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       final _viewModel = Provider.of<ViewModel>(context, listen: false);
       _viewModel
-          .logIn(mail: _mail.text, password: "password")
+          .logIn(mail: _mail.text, password: _password.text)
           .then((value) async {
-        if (value) {
+        if (value != null) {
           await _viewModel.getCurrentUser().then((value) {
             context.router.navigateNamed(RouteConsts.HOME_PAGE);
           });
-        } else {
-          print("yanlış şifre");
         }
       });
     }

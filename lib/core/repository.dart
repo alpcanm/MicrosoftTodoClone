@@ -65,7 +65,7 @@ class Repository implements UserLogic, NotesLogic {
   }
 
   @override
-  Future<bool> logIn({required String mail, required String password}) {
+  Future<User?> logIn({required String mail, required String password}) {
     return _userServices.logIn(mail: mail, password: password);
   }
 

@@ -39,7 +39,7 @@ class User {
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      userId: map['user_id'],
+      userId: map['user_id'].toString(),
       name: map['name'],
       surname: map['surname'],
       mail: map['mail'],

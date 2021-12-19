@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bot_2000/core/abstraction/user_logic.dart';
 import 'package:bot_2000/core/models/user.dart';
 import 'package:bot_2000/core/network/config.dart';
@@ -21,9 +23,22 @@ class UserServices implements UserLogic {
   }
 
   @override
-  Future<bool> logIn({required String mail, required String password}) async {
+  Future<User?> logIn({required String mail, required String password}) async {
     await Future.delayed(Duration.zero);
-    return false;
+    Map _map = {"mail": mail, "password": password};
+    try {
+      Response _response = await _dio.post('login', data: json.encode(_map));
+      print(_response);
+      final String _token = _response.data['access_token'];
+      _dio.options.headers["authorization"] = "Bearer $_token";
+      _response = await _dio.get('/protected');
+      User _user = User.fromMap(_response.data);
+      print(_user.mail);
+      return _user;
+    } catch (e) {
+      print(e);
+      return null;
+    }
   }
 
   @override
