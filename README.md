@@ -20,10 +20,8 @@ Not: Bu proje[flask](https://github.com/alpcanm/flask_api) projesi ile bağlant�
 ![This is an image](readme_image/image3.PNG)
 
 ## Kullanılan flutter paketleri
--  Local db [Hive](https://pub.dev/packages/hive) ;
-     Siyah beyaz tema çerezleri, Token tutma işlemleri.
--  Api bağlantı. [dio](https://pub.dev/packages/dio);
-     Servise özel paket kullanılmadı (Firebase vs.). Paket bağımlılığını azaltma amaçlı.
+-  Local db [Hive](https://pub.dev/packages/hive) (Siyah beyaz tema çerezleri, Token tutma işlemleri.)
+-  Api bağlantı. [dio](https://pub.dev/packages/dio) (Servise özel paket kullanılmadı (Firebase vs.). Paket bağımlılığını azaltma amaçlı.)
 -  State management [provider ](https://pub.dev/packages/provider)
 -  Locator [get_it](https://pub.dev/packages/get_it)
 -  Navigation [auto_route](https://pub.dev/packages/auto_route)
