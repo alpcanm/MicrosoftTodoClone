@@ -1,24 +1,48 @@
+import 'dart:async';
 import 'dart:convert';
-
 import 'package:bot_2000/core/abstraction/user_logic.dart';
 import 'package:bot_2000/core/models/user.dart';
 import 'package:bot_2000/core/network/config.dart';
+import 'package:bot_2000/core/repository/cache_manager.dart';
 import 'package:dio/dio.dart';
 
 class UserServices implements UserLogic {
   final BaseOptions _baseOptions = BaseOptions();
   final Dio _dio = Dio();
+  String? _token;
+  String cacheId = "token";
+  late final CacheManager tokenCache;
   UserServices() {
     _baseOptions.baseUrl = NetworkConfig.baseUrl;
     _dio.options = _baseOptions;
+    tokenCache = TokenCachManager(cacheId);
+    initFunction();
   }
+
+  Future<void> initFunction() async {
+    await tokenCache.init();
+  }
+
   @override
-  Future<User?> getCurrentUser() async {}
+  Future<User?> getCurrentUser() async {
+    try {
+      String? _token = tokenCache.getValues(cacheId)?.first;
+      if (_token != null) {
+        _dio.options.headers["authorization"] = "Bearer $_token";
+        Response _response = await _dio.get('/protected');
+        User _user = User.fromMap(_response.data);
+        return _user;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Future logOut() async {
     await Future.delayed(const Duration(milliseconds: 150));
 
+    tokenCache.clearBox();
     return null;
   }
 
@@ -28,12 +52,15 @@ class UserServices implements UserLogic {
     Map _map = {"mail": mail, "password": password};
     try {
       Response _response = await _dio.post('login', data: json.encode(_map));
-      print(_response);
-      final String _token = _response.data['access_token'];
+      _token = _response.data['access_token'];
+      if (_token != null) {
+        await tokenCache.clearBox();
+        await tokenCache.addToBox(_token!);
+      }
       _dio.options.headers["authorization"] = "Bearer $_token";
       _response = await _dio.get('/protected');
       User _user = User.fromMap(_response.data);
-      print(_user.mail);
+
       return _user;
     } catch (e) {
       print(e);

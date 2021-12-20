@@ -2,14 +2,14 @@ import 'dart:async';
 import 'package:bot_2000/core/abstraction/user_logic.dart';
 import 'package:bot_2000/core/models/user.dart';
 import 'package:bot_2000/core/get_it/get_it.dart';
-import 'package:bot_2000/core/repository.dart';
+import 'package:bot_2000/core/bridge.dart';
 import 'package:bot_2000/view/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 enum ThemeState { dark, light }
 
 class ViewModel with ChangeNotifier implements UserLogic {
-  final Repository _repository = getIt<Repository>();
+  final Bridge _repository = getIt<Bridge>();
   ViewModel() {
     getCurrentUser();
   }

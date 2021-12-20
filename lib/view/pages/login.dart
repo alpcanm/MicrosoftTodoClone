@@ -60,6 +60,9 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             logoTitle(context),
+            const Divider(
+              color: Colors.transparent,
+            ),
             MyTextField(
                 controller: _mail,
                 labelText: ConstTexts.mail,
@@ -91,17 +94,15 @@ class _LoginPageState extends State<LoginPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          Icons.check_circle_outlined,
-          color: Theme.of(context).colorScheme.secondary,
-          size: 72,
+        const FlutterLogo(
+          size: 100,
         ),
         Text(
           ConstTexts.title,
           style: Theme.of(context).textTheme.headline1!.copyWith(
                 decoration: TextDecoration.lineThrough,
               ),
-        )
+        ),
       ],
     );
   }
