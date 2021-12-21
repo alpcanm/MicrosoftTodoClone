@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bot_2000/core/auto_route/guard.dart';
+import 'package:bot_2000/core/auto_route/guardian/guard.dart';
 import 'package:bot_2000/core/auto_route/route_const.dart';
 import 'package:bot_2000/view/pages/home.dart';
 import 'package:bot_2000/view/pages/login.dart';

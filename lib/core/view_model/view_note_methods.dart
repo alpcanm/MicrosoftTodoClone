@@ -6,9 +6,6 @@ import 'package:bot_2000/core/bridge.dart';
 
 class ViewNoteMethods implements NotesLogic {
   final Bridge _bridge = getIt<Bridge>();
-  String check = "00";
-
-  _logOut() {}
 
   @override
   Stream<List<NoteBook?>> getNoteBooks(String userId) {

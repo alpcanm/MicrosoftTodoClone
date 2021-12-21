@@ -49,9 +49,9 @@ class _SubnoteWigdetState extends State<SubnoteWigdet> {
         splashRadius: 12,
       ),
       title: TextAndField(
-        text: widget.subnote.text ?? "",
+        text: widget.subnote.text ?? '',
         columnName: Keys.columnText,
-        relationId: widget.subnote.subNoteId ?? "",
+        relationId: widget.subnote.subNoteId ?? '',
         tableName: Keys.tableSubnotes,
         textStyle: _textStyleCheck(widget.subnote.isComplete!, context),
       ),

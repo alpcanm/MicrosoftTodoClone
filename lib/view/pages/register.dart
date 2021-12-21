@@ -1,3 +1,4 @@
+import 'package:bot_2000/core/extra_methods/print_message.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:bot_2000/view/components/strings/strings.dart';
 import 'package:bot_2000/view/widgets/login_card.dart';
@@ -18,9 +19,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _surname = TextEditingController();
   final TextEditingController _mail = TextEditingController();
   final TextEditingController _password = TextEditingController();
-  final TextEditingController _rePassword = TextEditingController();
-  final TextEditingController _phoneNumber = TextEditingController();
-  final mySnackBar = const SnackBar(content: Text('İşlem Başarılı'));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,20 +40,19 @@ class _RegisterPageState extends State<RegisterPage> {
                       controller: _surname, labelText: ConstTexts.surname),
                   MyTextField(controller: _mail, labelText: ConstTexts.mail),
                   MyTextField(
-                    controller: _phoneNumber,
-                    labelText: ConstTexts.phoneNumber,
-                    isNotRequired: true,
-                  ),
-                  MyTextField(
-                      controller: _password, labelText: ConstTexts.password),
-                  MyTextField(
-                      controller: _rePassword, labelText: ConstTexts.password),
+                      obscureText: true,
+                      controller: _password,
+                      labelText: ConstTexts.password),
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          _registerFunction().then((value) =>
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(mySnackBar));
+                          _registerFunction().then((value) {
+                            if (value) {
+                              PrintMessage.showSucces(context);
+                            } else {
+                              PrintMessage.showFailed(context);
+                            }
+                          });
                         }
                       },
                       child: Text(ConstTexts.register))
@@ -71,7 +69,6 @@ class _RegisterPageState extends State<RegisterPage> {
         name: _name.text,
         surname: _surname.text,
         mail: _mail.text,
-        password: _password.text,
-        phoneNumber: _phoneNumber.text);
+        password: _password.text);
   }
 }

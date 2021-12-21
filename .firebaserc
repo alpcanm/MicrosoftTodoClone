@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "hosting-service-31cf9"
+  },
+  "targets": {
+    "hosting-service-31cf9": {
+      "hosting": {
+        "ms-todo-clone": [
+          "ms-todo-clone"
+        ]
+      }
+    }
   }
 }

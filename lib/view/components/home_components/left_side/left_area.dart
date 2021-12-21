@@ -66,14 +66,14 @@ class LeftArea extends StatelessWidget {
             return NoteBookButton(
               subTitle: _noteBook?.noteList?.length.toString(),
               title: _noteBook?.text ?? 'Boş',
-              noteBookId: _noteBook?.noteBookId ?? "Boş",
+              noteBookId: _noteBook?.noteBookId ?? 'Boş',
               onPress: () {
                 final _viewModel =
                     Provider.of<ViewModel>(context, listen: false);
                 final _noteViewModel =
                     Provider.of<NoteViewModel>(context, listen: false);
-                _viewModel.noteBookId = _noteBook?.noteBookId ?? "Boş";
-                _viewModel.noteBookText = _noteBook?.text ?? "Boş";
+                _viewModel.noteBookId = _noteBook?.noteBookId ?? 'Boş';
+                _viewModel.noteBookText = _noteBook?.text ?? 'Boş';
                 _noteViewModel.currentNote = null;
               },
             );

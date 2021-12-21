@@ -9,7 +9,7 @@ class NotFoundPage extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Page NOT FOUND",
+            'Page NOT FOUND',
             style: Theme.of(context).textTheme.headline1,
           ),
         ],

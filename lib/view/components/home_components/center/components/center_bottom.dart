@@ -42,7 +42,7 @@ class _CenterBottomState extends State<CenterBottom> {
                   style: Theme.of(context).textTheme.bodyText1,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Lütfen bir şeyler yazınız.";
+                      return 'Lütfen bir şeyler yazınız.';
                     } else {
                       return null;
                     }

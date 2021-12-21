@@ -17,6 +17,7 @@ class ViewModel with ChangeNotifier implements UserLogic {
   User? get user => _user;
   set user(User? user) {
     _user = user;
+
     notifyListeners();
   }
 
@@ -66,6 +67,8 @@ class ViewModel with ChangeNotifier implements UserLogic {
   @override
   Future logOut() async {
     user = await _repository.logOut();
+    noteBookId = '';
+    noteBookText = '';
     return user;
   }
 

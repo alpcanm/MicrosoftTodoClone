@@ -61,7 +61,7 @@ class NoteTable extends StatelessWidget {
     return Card(
         child: Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text("Tamamlandı ${completeLength.toString()}"),
+      child: Text('Tamamlandı ${completeLength.toString()}'),
     ));
   }
 }

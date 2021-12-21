@@ -1,5 +1,5 @@
 import 'package:bot_2000/core/auto_route/auto_route.gr.dart';
-import 'package:bot_2000/core/auto_route/guard.dart';
+import 'package:bot_2000/core/auto_route/guardian/guard.dart';
 import 'package:bot_2000/core/get_it/get_it.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 Future<void> main() async {
   setupGetIt();
   await Hive.initFlutter();
-
   runApp(MultiProvider(
     child: MyApp(),
     providers: [
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
       routeInformationParser: _appRouter.defaultRouteParser(),
       routerDelegate: _appRouter.delegate(),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Microsoft To Do Clone App',
       theme: _viewModel.themeData,
     );
   }

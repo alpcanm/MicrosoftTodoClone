@@ -15,7 +15,7 @@ import '../../view/pages/home.dart' as _i2;
 import '../../view/pages/login.dart' as _i1;
 import '../../view/pages/not_found.dart' as _i3;
 import '../../view/pages/register.dart' as _i4;
-import 'guard.dart' as _i7;
+import 'guardian/guard.dart' as _i7;
 
 class AppRouter extends _i5.RootStackRouter {
   AppRouter(

@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "ms-todo-clone",
     "public": "build/web",
     "ignore": [
       "firebase.json",

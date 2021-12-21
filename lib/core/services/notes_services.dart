@@ -33,7 +33,7 @@ class NoteServices implements NotesLogic {
         yield _noteBooks;
       }
     } catch (e) {
-      print(e);
+      rethrow;
     }
   }
 
@@ -47,15 +47,15 @@ class NoteServices implements NotesLogic {
         lastUpdate: _now,
         relUserId: relationId,
         text: 'Yeni not defteri',
-        iconData: "",
-        noteBookId: "",
+        iconData: '',
+        noteBookId: '',
         sequence: 1);
     try {
       await _dio.post('/${Keys.tableNotebooks}', data: _noteBook.toJson());
-    } on DioError catch (e) {
-      print(e.message);
+      return true;
+    } catch (e) {
+      return false;
     }
-    return true;
   }
 
   @override
@@ -74,33 +74,31 @@ class NoteServices implements NotesLogic {
         yield _notes;
       }
     } catch (e) {
-      print(e);
+      rethrow;
     }
   }
 
   @override
   Future<bool> postNote(
       {required String relationId, required String text}) async {
-    await Future.delayed(const Duration(milliseconds: 500));
     final DateTime _now = DateTime.now();
     final Note _note = Note(
-        noteId: "",
+        noteId: '',
         createdAt: _now,
         isVisible: true,
         lastUpdate: _now,
         relNoteBookId: relationId,
         text: text,
         isComplete: false,
-        comment: "Bir yorum ekle.",
+        comment: 'Bir yorum ekle.',
         isMajor: false,
         sequence: 1);
-
     try {
       await _dio.post('/${Keys.tableNotes}', data: _note.toJson());
-    } on DioError catch (e) {
-      print(e.message);
+      return true;
+    } catch (e) {
+      return false;
     }
-    return true;
   }
 
   @override
@@ -112,7 +110,6 @@ class NoteServices implements NotesLogic {
             .where((element) => element!.noteId == noteId ? true : false)
             .toList()
             .first;
-
         Response _response = await _dio.get('/${Keys.tableSubnotes}/$noteId');
         List _list = _response.data;
         List<SubNote> _subNoteList = _list.map((e) {
@@ -123,7 +120,7 @@ class NoteServices implements NotesLogic {
         yield _note;
       }
     } catch (e) {
-      print(e);
+      rethrow;
     }
   }
 
@@ -137,14 +134,14 @@ class NoteServices implements NotesLogic {
         isVisible: true,
         relNoteId: relationId,
         sequence: 2,
-        subNoteId: "",
+        subNoteId: '',
         text: text);
     try {
       await _dio.post('/${Keys.tableSubnotes}', data: _subNote.toJson());
-    } on DioError catch (e) {
-      print(e.message);
+      return true;
+    } catch (e) {
+      return false;
     }
-    return true;
   }
 
   @override
@@ -156,9 +153,9 @@ class NoteServices implements NotesLogic {
     Map _data = {columnName: value};
     try {
       await _dio.patch('$tableName/$relationId', data: jsonEncode(_data));
+      return true;
     } catch (e) {
-      print(e);
+      return false;
     }
-    return true;
   }
 }

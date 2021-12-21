@@ -31,7 +31,7 @@ class AddSubnote extends StatelessWidget {
               controller: _controller,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return "Lütfen bir şeyler yazınız.";
+                  return 'Lütfen bir şeyler yazınız.';
                 } else {
                   return null;
                 }
@@ -48,7 +48,7 @@ class AddSubnote extends StatelessWidget {
     if (_formKey.currentState!.validate()) {
       final _noteMethods = ViewNoteMethods();
       await _noteMethods.postSubNote(
-          relationId: noteId ?? "", text: _controller.text);
+          relationId: noteId ?? '', text: _controller.text);
       _controller.clear();
     }
   }

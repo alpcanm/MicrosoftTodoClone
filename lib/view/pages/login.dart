@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bot_2000/core/auto_route/route_const.dart';
+import 'package:bot_2000/core/extra_methods/print_message.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:bot_2000/view/components/strings/strings.dart';
 import 'package:bot_2000/view/widgets/login_card.dart';
@@ -40,8 +41,10 @@ class _LoginPageState extends State<LoginPage> {
           .then((value) async {
         if (value != null) {
           await _viewModel.getCurrentUser().then((value) {
-            context.router.navigateNamed(RouteConsts.HOME_PAGE);
+            context.router.replaceNamed(RouteConsts.HOME_PAGE);
           });
+        } else {
+          PrintMessage.showFailed(context);
         }
       });
     }
@@ -70,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
             MyTextField(
                 controller: _password,
                 labelText: ConstTexts.password,
+                obscureText: true,
                 icon: Icons.lock),
             ElevatedButton(
                 onPressed: () {
