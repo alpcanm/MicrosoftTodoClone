@@ -1,4 +1,5 @@
 import 'package:bot_2000/core/auto_route/route_const.dart';
+import 'package:bot_2000/core/responsive.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,9 @@ class ToDoAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: const SizedBox(),
+      leading: Responsive.isMobile(context)
+          ? IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
+          : const SizedBox(),
       actions: [
         PopupMenuButton(
             itemBuilder: (context) => [

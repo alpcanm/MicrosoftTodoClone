@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Microsoft To Do Clone App',
       theme: _viewModel.themeData,
+    
     );
   }
 }

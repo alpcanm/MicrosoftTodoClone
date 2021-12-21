@@ -94,18 +94,20 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Row logoTitle(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+  Wrap logoTitle(BuildContext context) {
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      alignment: WrapAlignment.center,
       children: [
         const FlutterLogo(
-          size: 100,
+          size: 75,
         ),
         Text(
           ConstTexts.title,
-          style: Theme.of(context).textTheme.headline1!.copyWith(
+          style: Theme.of(context).textTheme.headline2!.copyWith(
                 decoration: TextDecoration.lineThrough,
               ),
+          maxLines: 2,
         ),
       ],
     );
