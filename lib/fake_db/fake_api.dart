@@ -10,7 +10,8 @@ class FakeApi {
 
   getNoteBook() async {}
 
-  Future<String> getCurrentUser() async {
+  Future<String> getCurrentUser() async { 
+    
     final String response = await rootBundle.loadString('fake_db/user.json');
     return response;
   }
