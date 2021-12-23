@@ -18,6 +18,7 @@ Not: Bu proje[flask](https://github.com/alpcanm/flask_api) projesi ile baÄŸlantÄ
 ![This is an image](readme_image/image4.png)
 ![This is an image](readme_image/image5.png)
 ![This is an image](readme_image/image2.PNG)
+-  Siyah tema.
 ![This is an image](readme_image/image3.PNG)
 -  Mobil versiyonu.
 ![This is an image](readme_image/mobile2.PNG)
