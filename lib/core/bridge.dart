@@ -27,8 +27,9 @@ class Bridge implements UserLogic, NotesLogic {
   }
 
   @override
-  Future<bool> postNoteBook({String? relationId}) {
-    return _noteServices.postNoteBook(relationId: relationId);
+  Future<bool> postNoteBook({String? relationId, required int sequence}) {
+    return _noteServices.postNoteBook(
+        relationId: relationId, sequence: sequence);
   }
 
   @override
@@ -45,8 +46,12 @@ class Bridge implements UserLogic, NotesLogic {
   }
 
   @override
-  Future<bool> postNote({required String relationId, required String text}) {
-    return _noteServices.postNote(text: text, relationId: relationId);
+  Future<bool> postNote(
+      {required String relationId,
+      required String text,
+      required int sequence}) {
+    return _noteServices.postNote(
+        text: text, relationId: relationId, sequence: sequence);
   }
 
   @override

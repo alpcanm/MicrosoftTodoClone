@@ -16,6 +16,9 @@ class NoteServices implements NotesLogic {
     _dio.options = _baseOptions;
   }
   List<Note?> _notes = [];
+  int notebookListLength = 0;
+  int noteListLengt = 0;
+
   @override
   Stream<List<NoteBook?>> getNoteBooks(String userId) async* {
     try {
@@ -24,21 +27,21 @@ class NoteServices implements NotesLogic {
         List<NoteBook?> _noteBooks = [];
         Response _response = await _dio.get('/${Keys.tableNotebooks}/$userId');
         List list = _response.data;
-
         for (var element in list) {
           NoteBook noteBook = NoteBook.fromMap(element);
-
           _noteBooks.add(noteBook);
         }
+        notebookListLength = _noteBooks.length;
         yield _noteBooks;
       }
     } catch (e) {
+      print(e);
       rethrow;
     }
   }
 
   @override
-  Future<bool> postNoteBook({String? relationId}) async {
+  Future<bool> postNoteBook({String? relationId, required int sequence}) async {
     await Future.delayed(const Duration(milliseconds: 500));
     final DateTime _now = DateTime.now();
     final NoteBook _noteBook = NoteBook(
@@ -49,11 +52,13 @@ class NoteServices implements NotesLogic {
         text: 'Yeni not defteri',
         iconData: '',
         noteBookId: '',
-        sequence: 1);
+        sequence: sequence);
     try {
       await _dio.post('/${Keys.tableNotebooks}', data: _noteBook.toJson());
       return true;
     } catch (e) {
+      print(e);
+
       return false;
     }
   }
@@ -70,17 +75,19 @@ class NoteServices implements NotesLogic {
           Note _note = Note.fromMap(e);
           return _note;
         }).toList();
-
+        noteListLengt = _notes.length;
         yield _notes;
       }
     } catch (e) {
+      print(e);
+
       rethrow;
     }
   }
 
   @override
   Future<bool> postNote(
-      {required String relationId, required String text}) async {
+      {required String relationId, required String text,required int sequence}) async {
     final DateTime _now = DateTime.now();
     final Note _note = Note(
         noteId: '',
@@ -92,11 +99,13 @@ class NoteServices implements NotesLogic {
         isComplete: false,
         comment: 'Bir yorum ekle.',
         isMajor: false,
-        sequence: 1);
+        sequence: sequence);
     try {
       await _dio.post('/${Keys.tableNotes}', data: _note.toJson());
       return true;
     } catch (e) {
+      print(e);
+
       return false;
     }
   }
@@ -120,6 +129,8 @@ class NoteServices implements NotesLogic {
         yield _note;
       }
     } catch (e) {
+      print(e);
+
       rethrow;
     }
   }

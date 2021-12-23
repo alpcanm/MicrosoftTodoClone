@@ -18,10 +18,8 @@ class ViewNoteMethods implements NotesLogic {
   }
 
   @override
-  Future<bool> postNoteBook({
-    String? relationId,
-  }) {
-    return _bridge.postNoteBook(relationId: relationId);
+  Future<bool> postNoteBook({String? relationId, required int sequence}) {
+    return _bridge.postNoteBook(relationId: relationId, sequence: sequence);
   }
 
   @override
@@ -38,8 +36,12 @@ class ViewNoteMethods implements NotesLogic {
   }
 
   @override
-  Future<bool> postNote({required String relationId, required String text}) {
-    return _bridge.postNote(text: text, relationId: relationId);
+  Future<bool> postNote(
+      {required String relationId,
+      required String text,
+      required int sequence}) {
+    return _bridge.postNote(
+        text: text, relationId: relationId, sequence: sequence);
   }
 
   @override

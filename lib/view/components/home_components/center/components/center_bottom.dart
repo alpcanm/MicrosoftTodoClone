@@ -1,3 +1,5 @@
+import 'package:bot_2000/core/get_it/get_it.dart';
+import 'package:bot_2000/core/services/notes_services.dart';
 import 'package:flutter/material.dart';
 import 'package:bot_2000/core/view_model/view_note_methods.dart';
 
@@ -29,7 +31,6 @@ class _CenterBottomState extends State<CenterBottom> {
                 onPressed: () => _postData(),
                 icon: Icon(
                   Icons.add,
-                 
                   color: Theme.of(context).colorScheme.secondary,
                 ),
                 splashRadius: 20,
@@ -59,8 +60,12 @@ class _CenterBottomState extends State<CenterBottom> {
   void _postData() async {
     if (_formKey.currentState!.validate()) {
       final _noteMethods = ViewNoteMethods();
+      final NoteServices _noteServices = getIt<NoteServices>();
+
       await _noteMethods.postNote(
-          relationId: widget.notebookId, text: _controller.text);
+          relationId: widget.notebookId,
+          text: _controller.text,
+          sequence: _noteServices.noteListLengt);
       _controller.clear();
     }
   }
