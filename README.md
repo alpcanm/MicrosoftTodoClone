@@ -21,7 +21,7 @@ Not: Bu proje[flask](https://github.com/alpcanm/flask_api) projesi ile bağlant�
 -  Siyah tema.
 ![This is an image](readme_image/image3.PNG)
 -  Mobil versiyonu.
-![This is an image](readme_image/mobile2.PNG)
+![This is an image](readme_image/mobile12.png)
 
 ## Kullanılan flutter paketleri
 -  Local db [Hive](https://pub.dev/packages/hive) (Siyah beyaz tema çerezleri, Token tutma işlemleri.)

@@ -62,6 +62,7 @@ class UserServices implements UserLogic {
       User _user = User.fromMap(_response.data);
       return _user;
     } catch (e) {
+      print(e);
       return null;
     }
   }
