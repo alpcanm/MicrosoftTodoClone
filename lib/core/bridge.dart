@@ -55,8 +55,8 @@ class Bridge implements UserLogic, NotesLogic {
   }
 
   @override
-  Future<bool> postSubNote({required String relationId, required String text}) {
-    return _noteServices.postSubNote(text: text, relationId: relationId);
+  Future<bool> postSubNote({required String relationId, required String text,required int sequence}) {
+    return _noteServices.postSubNote(text: text, relationId: relationId,sequence:sequence);
   }
 
   @override

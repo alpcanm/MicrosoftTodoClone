@@ -11,8 +11,10 @@ class CardSubnotes extends StatelessWidget {
   final Note note;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: 250,
+    return SizedBox(
+      height: 200,
       child: ListView.builder(
+        shrinkWrap: true,
         itemCount: note.subNotes?.length ?? 0,
         itemBuilder: (context, index) {
           SubNote _subnote = note.subNotes![index]!;

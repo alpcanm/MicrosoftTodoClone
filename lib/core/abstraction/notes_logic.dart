@@ -8,7 +8,7 @@ abstract class NotesLogic {
   Future<bool> postNoteBook(
       {required String relationId,required int sequence});
   Future<bool> postNote({required String relationId, required String text,required int sequence});
-  Future<bool> postSubNote({required String relationId, required String text});
+  Future<bool> postSubNote({required String relationId, required String text,required int sequence});
 
   Future<bool> updateField(
       {required String relationId,

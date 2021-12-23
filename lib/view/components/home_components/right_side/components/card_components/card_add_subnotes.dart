@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'package:bot_2000/core/view_model/view_note_methods.dart';
 
 class AddSubnote extends StatelessWidget {
   AddSubnote({
     Key? key,
     this.noteId,
+    this.subNoteLength,
   }) : super(key: key);
   final TextEditingController _controller = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final String? noteId;
+  final int? subNoteLength;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,8 +50,9 @@ class AddSubnote extends StatelessWidget {
   void _postData() async {
     if (_formKey.currentState!.validate()) {
       final _noteMethods = ViewNoteMethods();
+
       await _noteMethods.postSubNote(
-          relationId: noteId ?? '', text: _controller.text);
+          relationId: noteId ?? '', text: _controller.text, sequence: 0);
       _controller.clear();
     }
   }

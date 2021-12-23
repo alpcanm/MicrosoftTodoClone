@@ -1,4 +1,5 @@
 import 'package:bot_2000/core/responsive.dart';
+import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/window_state.dart';
 import 'package:bot_2000/view/components/home_components/center/center_area.dart';
 import 'package:bot_2000/view/components/home_components/left_side/left_area.dart';
@@ -31,8 +32,6 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> get _mobilePattern {
     final _windovState = Provider.of<WindowState>(context);
-
-
     return [
       !_windovState.firstWindowOpen
           ? Expanded(child: _leftArea)
@@ -61,10 +60,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> get _desktopPatter {
+    final _noteViewModel = Provider.of<NoteViewModel>(context);
     return [
       SizedBox(width: 300, child: _leftArea),
       Expanded(child: _centerArea),
-      SizedBox(width: 300, child: _rightArea)
+      SizedBox(
+          width: _noteViewModel.currentNote != null ? 300 : 0,
+          child: _rightArea)
     ];
   }
 

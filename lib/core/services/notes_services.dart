@@ -87,7 +87,9 @@ class NoteServices implements NotesLogic {
 
   @override
   Future<bool> postNote(
-      {required String relationId, required String text,required int sequence}) async {
+      {required String relationId,
+      required String text,
+      required int sequence}) async {
     final DateTime _now = DateTime.now();
     final Note _note = Note(
         noteId: '',
@@ -137,14 +139,16 @@ class NoteServices implements NotesLogic {
 
   @override
   Future<bool> postSubNote(
-      {required String relationId, required String text}) async {
+      {required String relationId,
+      required String text,
+      required int sequence}) async {
     final _now = DateTime.now();
     SubNote _subNote = SubNote(
         createdAt: _now,
         isComplete: false,
         isVisible: true,
         relNoteId: relationId,
-        sequence: 2,
+        sequence: sequence,
         subNoteId: '',
         text: text);
     try {

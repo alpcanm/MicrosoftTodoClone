@@ -49,6 +49,7 @@ class RightArea extends StatelessWidget {
                   return RightCard(note: _note);
                 }),
             AddSubnote(
+              subNoteLength: _note.subNotes?.length,
               noteId: _note.noteId,
             ),
           ],
