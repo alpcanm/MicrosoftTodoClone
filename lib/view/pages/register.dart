@@ -28,37 +28,39 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
-        child: Form(
-            key: _formKey,
-            child: LoginCard(
-              widget: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  MyTextField(controller: _name, labelText: ConstTexts.name),
-                  MyTextField(
-                      controller: _surname, labelText: ConstTexts.surname),
-                  MyTextField(controller: _mail, labelText: ConstTexts.mail),
-                  MyTextField(
-                      obscureText: true,
-                      controller: _password,
-                      labelText: ConstTexts.password),
-                  ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          _registerFunction().then((value) {
-                            if (value) {
-                              PrintMessage.showSucces(context);
-                            } else {
-                              PrintMessage.showFailed(context);
-                            }
-                          });
-                        }
-                      },
-                      child: Text(ConstTexts.register))
-                ],
-              ),
-            )),
+        child: SingleChildScrollView(
+          child: Form(
+              key: _formKey,
+              child: LoginCard(
+                widget: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MyTextField(controller: _name, labelText: ConstTexts.name),
+                    MyTextField(
+                        controller: _surname, labelText: ConstTexts.surname),
+                    MyTextField(controller: _mail, labelText: ConstTexts.mail),
+                    MyTextField(
+                        obscureText: true,
+                        controller: _password,
+                        labelText: ConstTexts.password),
+                    ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            _registerFunction().then((value) {
+                              if (value) {
+                                PrintMessage.showSucces(context);
+                              } else {
+                                PrintMessage.showFailed(context);
+                              }
+                            });
+                          }
+                        },
+                        child: Text(ConstTexts.register))
+                  ],
+                ),
+              )),
+        ),
       ),
     );
   }

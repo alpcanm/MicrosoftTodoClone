@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
-        child: form(context),
+        child: SingleChildScrollView(child: form(context)),
       ),
     );
   }
