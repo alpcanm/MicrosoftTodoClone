@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:bot_2000/core/keys.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_note_methods.dart';
