@@ -20,7 +20,7 @@ Not: Bu proje[flask](https://github.com/alpcanm/flask_api) projesi ile bağlant�
 ![This is an image](readme_image/image2.PNG)
 ![This is an image](readme_image/image3.PNG)
 -  Mobil versiyonu.
-![This is an image](readme_image/mobile.png)
+![This is an image](readme_image/mobile2.PNG)
 
 ## Kullanılan flutter paketleri
 -  Local db [Hive](https://pub.dev/packages/hive) (Siyah beyaz tema çerezleri, Token tutma işlemleri.)
