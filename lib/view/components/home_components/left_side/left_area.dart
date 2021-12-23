@@ -5,6 +5,7 @@ import 'package:bot_2000/core/responsive.dart';
 import 'package:bot_2000/core/view_model/view_note_methods.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
+import 'package:bot_2000/core/view_model/window_state.dart';
 import 'package:bot_2000/view/components/home_components/left_side/components/left_bottom.dart';
 import 'package:bot_2000/view/components/home_components/left_side/components/notebook_button.dart';
 import 'package:bot_2000/view/components/home_components/left_side/components/profile_bar.dart';
@@ -22,13 +23,9 @@ class LeftArea extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          children: [
-            const ProfileBar(),
-            noteBooks(context),
-          ],
-        ),
-        const LeftBottom()
+        const ProfileBar(),
+        noteBooks(context),
+        const LeftBottom(),
       ],
     );
   }
@@ -61,26 +58,31 @@ class LeftArea extends StatelessWidget {
       stream: noteMethods.getNoteBooks(userId),
       body: (context, snapshot) {
         List<NoteBook?> _result = snapshot.data!;
-        return ListView.builder(
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            NoteBook? _noteBook = _result[index];
-            return NoteBookButton(
-              subTitle: _noteBook?.noteList?.length.toString(),
-              title: _noteBook?.text ?? 'Boş',
-              noteBookId: _noteBook?.noteBookId ?? 'Boş',
-              onPress: () {
-                final _viewModel =
-                    Provider.of<ViewModel>(context, listen: false);
-                final _noteViewModel =
-                    Provider.of<NoteViewModel>(context, listen: false);
-                _viewModel.noteBookId = _noteBook?.noteBookId ?? 'Boş';
-                _viewModel.noteBookText = _noteBook?.text ?? 'Boş';
-                _noteViewModel.currentNote = null;
-              },
-            );
-          },
-          itemCount: _result.length,
+        return Flexible(
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              NoteBook? _noteBook = _result[index];
+              return NoteBookButton(
+                subTitle: _noteBook?.noteList?.length.toString(),
+                title: _noteBook?.text ?? 'Boş',
+                noteBookId: _noteBook?.noteBookId ?? 'Boş',
+                onPress: () {
+                  final _viewModel =
+                      Provider.of<ViewModel>(context, listen: false);
+                  final _noteViewModel =
+                      Provider.of<NoteViewModel>(context, listen: false);
+                  final _windowState =
+                      Provider.of<WindowState>(context, listen: false);
+                  _windowState.firstWindowOpen = true;
+                  _viewModel.noteBookId = _noteBook?.noteBookId ?? 'Boş';
+                  _viewModel.noteBookText = _noteBook?.text ?? 'Boş';
+                  _noteViewModel.currentNote = null;
+                },
+              );
+            },
+            itemCount: _result.length,
+          ),
         );
       },
     );

@@ -21,8 +21,7 @@ class NoteTable extends StatelessWidget {
     if (_isCompleteFalse.isNotEmpty || _isCompleteTrue.isNotEmpty) {
       return Container(
         margin: const EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             ListView.builder(
               itemCount: _isCompleteFalse.length,

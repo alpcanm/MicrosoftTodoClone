@@ -2,6 +2,7 @@ import 'package:bot_2000/core/auto_route/route_const.dart';
 import 'package:bot_2000/core/responsive.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
+import 'package:bot_2000/core/view_model/window_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:auto_route/auto_route.dart';
@@ -18,7 +19,15 @@ class ToDoAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: Responsive.isMobile(context)
-          ? IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
+          ? IconButton(
+              onPressed: () {
+                final _windowState =
+                    Provider.of<WindowState>(context, listen: false);
+
+                _windowState.firstWindowOpen = !_windowState.firstWindowOpen;
+                _windowState.secondWindowOpen = false;
+              },
+              icon: const Icon(Icons.menu))
           : const SizedBox(),
       actions: [
         PopupMenuButton(

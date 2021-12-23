@@ -17,21 +17,18 @@ class RightArea extends StatelessWidget {
     if (_noteViewModel.currentNote != null) {
       Note _note = _noteViewModel.currentNote!;
       final noteMethods = ViewNoteMethods();
-      return SizedBox(
-        width: 300,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            streramBuilder(noteMethods, _note, context),
-            RightBottom(
-              createdAt: _note.createdAt!.toString(),
-              lastUpdate: _note.lastUpdate!.toString(),
-              noteText: _note.text!,
-              noteId: _note.noteId!,
-            )
-          ],
-        ),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          streramBuilder(noteMethods, _note, context),
+          RightBottom(
+            createdAt: _note.createdAt!.toString(),
+            lastUpdate: _note.lastUpdate!.toString(),
+            noteText: _note.text!,
+            noteId: _note.noteId!,
+          )
+        ],
       );
     } else {
       return const SizedBox();

@@ -1,6 +1,9 @@
+import 'dart:html';
+
 import 'package:bot_2000/core/keys.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/view_note_methods.dart';
+import 'package:bot_2000/core/view_model/window_state.dart';
 import 'package:flutter/material.dart';
 import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +45,8 @@ class _NoteButtonState extends State<NoteButton> {
         onTap: () {
           final _noteViewModel =
               Provider.of<NoteViewModel>(context, listen: false);
+          final _windowState = Provider.of<WindowState>(context, listen: false);
+          _windowState.secondWindowOpen = true;
           _noteViewModel.currentNote = _note;
         },
       ),

@@ -2,6 +2,7 @@ import 'package:bot_2000/core/auto_route/auto_route.gr.dart';
 import 'package:bot_2000/core/auto_route/guardian/guard.dart';
 import 'package:bot_2000/core/get_it/get_it.dart';
 import 'package:bot_2000/core/view_model/note_viewmodel.dart';
+import 'package:bot_2000/core/view_model/window_state.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -15,6 +16,7 @@ Future<void> main() async {
     providers: [
       ChangeNotifierProvider(create: (context) => ViewModel()),
       ChangeNotifierProvider(create: (context) => NoteViewModel()),
+      ChangeNotifierProvider(create: (context) => WindowState()),
     ],
   ));
 }
@@ -31,7 +33,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Microsoft To Do Clone App',
       theme: _viewModel.themeData,
-    
     );
   }
 }
