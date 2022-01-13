@@ -23,10 +23,10 @@ class RightArea extends StatelessWidget {
         children: [
           streramBuilder(noteMethods, _note, context),
           RightBottom(
-            createdAt: _note.createdAt!.toString(),
-            lastUpdate: _note.lastUpdate!.toString(),
-            noteText: _note.text!,
-            noteId: _note.noteId!,
+            createdAt: _note.createdAt.toString(),
+            lastUpdate: _note.lastUpdate.toString(),
+            noteText: _note.text,
+            noteId: _note.noteId,
           )
         ],
       );

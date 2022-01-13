@@ -10,8 +10,7 @@ class LeftBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        child: Column(
+    return Column(
       children: [
         const Divider(),
         Padding(
@@ -26,7 +25,7 @@ class LeftBottom extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyText1)),
         )
       ],
-    ));
+    );
   }
 
   postNoteBook(BuildContext context) async {

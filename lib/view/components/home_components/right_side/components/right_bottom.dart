@@ -9,15 +9,15 @@ import 'package:provider/provider.dart';
 class RightBottom extends StatelessWidget {
   const RightBottom({
     Key? key,
-    required this.lastUpdate,
-    required this.createdAt,
-    required this.noteText,
-    required this.noteId,
+     this.lastUpdate,
+     this.createdAt,
+     this.noteText,
+     this.noteId,
   }) : super(key: key);
-  final String lastUpdate;
-  final String createdAt;
-  final String noteText;
-  final String noteId;
+  final String? lastUpdate;
+  final String? createdAt;
+  final String? noteText;
+  final String? noteId;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,15 +28,15 @@ class RightBottom extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text(
-                'Oluşturuldu: $createdAt',
-                style: Theme.of(context).textTheme.caption,
-              ),
+              // Text(
+              //   'Oluşturuldu: $createdAt',
+              //   style: Theme.of(context).textTheme.caption,
+              // ),
               IconButton(
                 onPressed: () => MyAlertDialog.showMyDialog(
                     context: context,
                     onApprove: () => _onApprove(context),
-                    text: noteText),
+                    text: noteText ?? ''),
                 icon: const Icon(Icons.delete_outlined),
                 iconSize: 32,
               )
@@ -53,7 +53,7 @@ class RightBottom extends StatelessWidget {
         tableName: Keys.tableNotes,
         value: false,
         columnName: Keys.columnIsVisible,
-        relationId: noteId);
+        relationId: noteId??'');
     final _noteViewModel = Provider.of<NoteViewModel>(context, listen: false);
     _noteViewModel.currentNote = null;
   }

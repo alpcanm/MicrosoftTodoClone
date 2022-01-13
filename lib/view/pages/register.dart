@@ -65,6 +65,12 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  // _checkMai(String email) {
+  //   return RegExp(
+  //           r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+  //       .hasMatch(email);
+  // }
+
   Future<bool> _registerFunction() async {
     final _viewModel = Provider.of<ViewModel>(context, listen: false);
     return await _viewModel.registerUser(
