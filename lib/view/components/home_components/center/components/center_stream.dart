@@ -16,7 +16,7 @@ class CenterStream extends StatelessWidget {
 
     return StreamBuilderExtension<List<Note?>>(
         body: (context, snapshot) {
-          List<Note?> _result = snapshot.data!;
+          List<Note?> _result = snapshot.data ?? [];
           return NoteTable(
             notes: _result,
           );

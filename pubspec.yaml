@@ -31,6 +31,10 @@ dependencies:
   #localDb
   hive: ^2.0.5
   hive_flutter: ^1.1.0
+
+  #tools
+  flutter_dotenv: ^5.0.2
+  dart_jsonwebtoken: ^2.4.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -45,6 +49,7 @@ flutter:
  
 
 
-
+  assets:
+    - ".env"
  
   uses-material-design: true

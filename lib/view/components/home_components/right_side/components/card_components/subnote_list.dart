@@ -44,8 +44,8 @@ class _SubnoteWigdetState extends State<SubnoteWigdet> {
       contentPadding: const EdgeInsets.all(0),
       leading: IconButton(
         onPressed: () => _completeButton(
-            widget.subnote.isComplete!, widget.subnote.subNoteId!),
-        icon: _isCompleteIconCheck(widget.subnote.isComplete!, context),
+            widget.subnote.isComplete ?? false, widget.subnote.subNoteId ?? ''),
+        icon: _isCompleteIconCheck(widget.subnote.isComplete ?? false, context),
         splashRadius: 12,
       ),
       title: TextAndField(
@@ -53,7 +53,7 @@ class _SubnoteWigdetState extends State<SubnoteWigdet> {
         columnName: Keys.columnText,
         relationId: widget.subnote.subNoteId ?? '',
         tableName: Keys.tableSubnotes,
-        textStyle: _textStyleCheck(widget.subnote.isComplete!, context),
+        textStyle: _textStyleCheck(widget.subnote.isComplete ?? false, context),
       ),
       trailing: _showCancelButton
           ? IconButton(
@@ -75,9 +75,9 @@ class _SubnoteWigdetState extends State<SubnoteWigdet> {
               tableName: Keys.tableSubnotes,
               value: false,
               columnName: Keys.columnIsVisible,
-              relationId: widget.subnote.subNoteId!);
+              relationId: widget.subnote.subNoteId ?? '');
         },
-        text: widget.subnote.text!);
+        text: widget.subnote.text ?? '');
   }
 
   Icon _isCompleteIconCheck(bool isComplete, BuildContext context) {

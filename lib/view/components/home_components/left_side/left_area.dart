@@ -34,7 +34,7 @@ class LeftArea extends StatelessWidget {
       future: _viewModel.getCurrentUser(),
       builder: (context, AsyncSnapshot<User?> snapshot) {
         if (snapshot.hasData) {
-          return streamBuilder(snapshot.data!.userId!);
+          return streamBuilder(snapshot.data?.userId ?? '');
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         } else {
@@ -55,7 +55,7 @@ class LeftArea extends StatelessWidget {
     return StreamBuilderExtension<List<NoteBook?>?>(
       stream: noteMethods.getNoteBooks(userId),
       body: (context, snapshot) {
-        List<NoteBook?> _result = snapshot.data!;
+        List<NoteBook?> _result = snapshot.data ?? [];
         return Flexible(
           child: ListView.builder(
             shrinkWrap: true,

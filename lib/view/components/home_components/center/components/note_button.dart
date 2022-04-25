@@ -25,20 +25,21 @@ class _NoteButtonState extends State<NoteButton> {
       child: InkWell(
         child: ListTile(
           leading: IconButton(
-            onPressed: () => _noteCompleteButton(widget.note.isComplete!),
-            icon: _isCompleteIconCheck(widget.note.isComplete!),
+            onPressed: () =>
+                _noteCompleteButton(widget.note.isComplete ?? false),
+            icon: _isCompleteIconCheck(widget.note.isComplete ?? false),
             splashRadius: 12,
           ),
           title: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              _note.text!,
-              style: _textStyleCheck(widget.note.isComplete!),
+              _note.text ?? '',
+              style: _textStyleCheck(widget.note.isComplete ?? false),
             ),
           ),
           trailing: IconButton(
-              onPressed: () => _noteMajorButton(_note.isMajor!),
-              icon: _isMajorIconCheck(_note.isMajor!)),
+              onPressed: () => _noteMajorButton(_note.isMajor ?? false),
+              icon: _isMajorIconCheck(_note.isMajor ?? false)),
         ),
         onTap: () {
           final _noteViewModel =
@@ -73,7 +74,7 @@ class _NoteButtonState extends State<NoteButton> {
         tableName: Keys.tableNotes,
         value: !isComplete,
         columnName: Keys.columnIsComplete,
-        relationId: widget.note.noteId!);
+        relationId: widget.note.noteId ?? '');
   }
 
   void _noteMajorButton(bool isMajor) {
@@ -82,7 +83,7 @@ class _NoteButtonState extends State<NoteButton> {
         tableName: Keys.tableNotes,
         value: !isMajor,
         columnName: Keys.columnIsMajor,
-        relationId: widget.note.noteId!);
+        relationId: widget.note.noteId ?? '');
   }
 
   _isMajorIconCheck(bool isMajor) {

@@ -45,8 +45,12 @@ class ViewNoteMethods implements NotesLogic {
   }
 
   @override
-  Future<bool> postSubNote({required String relationId, required String text,required int sequence}) {
-    return _bridge.postSubNote(text: text, relationId: relationId,sequence:sequence);
+  Future<bool> postSubNote(
+      {required String relationId,
+      required String text,
+      required int sequence}) {
+    return _bridge.postSubNote(
+        text: text, relationId: relationId, sequence: sequence);
   }
 
   @override

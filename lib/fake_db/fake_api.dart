@@ -10,8 +10,7 @@ class FakeApi {
 
   getNoteBook() async {}
 
-  Future<String> getCurrentUser() async { 
-    
+  Future<String> getCurrentUser() async {
     final String response = await rootBundle.loadString('fake_db/user.json');
     return response;
   }
@@ -40,12 +39,12 @@ class FakeApi {
   }
 
   Future<List<Note?>> getAllNotes(String relNoteBookId) async {
-   // print(relNoteBookId);
+    // print(relNoteBookId);
     List<Note?> _result = [];
     _result = await getNotes(relNoteBookId);
 
     for (Note? element in _result) {
-      element!.subNotes = await getSubNotes(element.noteId!);
+      element?.subNotes = await getSubNotes(element.noteId ?? '');
     }
 
     return _result;

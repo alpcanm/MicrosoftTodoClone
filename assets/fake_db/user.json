@@ -1,7 +1,9 @@
 {
-    "name": "Alp Can",
-    "mail": "alpcanm@gmail.com",
-    "userId": "1",
-    "creatadAt": "2.12.2021",
-    "phoneNumber": "537 440 2121"
+    "sub_note_id":"",
+    "rel_note_id":"",
+    "text":"",
+    "is_complete":false,
+    "is_visible":false,
+    "created_at":"",
+    "sequence":1232
 }

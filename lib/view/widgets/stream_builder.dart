@@ -14,7 +14,7 @@ class StreamBuilderExtension<T> extends StatelessWidget {
       stream: stream,
       builder: (context, AsyncSnapshot<T> snapshot) {
         if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
+          return SizedBox(height: 200, child: Text(snapshot.error.toString()));
         } else {
           switch (snapshot.connectionState) {
             case ConnectionState.none:

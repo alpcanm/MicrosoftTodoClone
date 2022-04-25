@@ -20,7 +20,7 @@ class SubNote {
 
   Map<String, dynamic> toMap() {
     return {
-      'sub_note_id': subNoteId,
+      '_id': subNoteId,
       'rel_note_id': relNoteId,
       'text': text,
       'is_complete': isComplete,
@@ -32,7 +32,7 @@ class SubNote {
 
   factory SubNote.fromMap(Map<String, dynamic> map) {
     return SubNote(
-      subNoteId: map['sub_note_id'].toString(),
+      subNoteId: map['_id'].toString(),
       relNoteId: map['rel_note_id'].toString(),
       text: map['text'],
       isComplete: map['is_complete'],

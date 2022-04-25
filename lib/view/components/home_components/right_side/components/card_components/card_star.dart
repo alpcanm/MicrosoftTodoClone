@@ -16,8 +16,8 @@ class CardStar extends StatelessWidget {
       alignment: Alignment.topRight,
       child: IconButton(
         iconSize: 20,
-        icon: _isMajorIconCheck(note.isMajor!, context),
-        onPressed: () => _noteMajorButton(note.isMajor!),
+        icon: _isMajorIconCheck(note.isMajor ?? false, context),
+        onPressed: () => _noteMajorButton(note.isMajor ?? false),
         splashRadius: 20,
       ),
     );
@@ -35,6 +35,6 @@ class CardStar extends StatelessWidget {
         tableName: Keys.tableNotes,
         value: !isMajor,
         columnName: Keys.columnIsMajor,
-        relationId: note.noteId!);
+        relationId: note.noteId ?? '');
   }
 }

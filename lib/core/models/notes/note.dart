@@ -30,7 +30,7 @@ class Note {
 
   Map<String, dynamic> toMap() {
     return {
-      'note_id': noteId,
+      '_id': noteId,
       'rel_notebook_id': relNoteBookId,
       'text': text,
       'is_major': isMajor,
@@ -45,7 +45,7 @@ class Note {
 
   factory Note.fromMap(Map<String, dynamic> map) {
     return Note(
-      noteId: map['note_id'].toString(),
+      noteId: map['_id'].toString(),
       relNoteBookId: map['rel_notebook_id'].toString(),
       text: map['text'],
       isMajor: map['is_major'],

@@ -22,10 +22,10 @@ class RightCard extends StatelessWidget {
         Column(
           children: [
             TextAndField(
-              text: note.text!,
+              text: note.text ?? '',
               textStyle: Theme.of(context).textTheme.headline5!,
               columnName: Keys.columnText,
-              relationId: note.noteId!,
+              relationId: note.noteId ?? '',
               tableName: Keys.tableNotes,
             ),
             const Divider(
@@ -35,7 +35,7 @@ class RightCard extends StatelessWidget {
                 text: note.comment!,
                 columnName: Keys.columnComment,
                 tableName: Keys.tableNotes,
-                relationId: note.noteId!,
+                relationId: note.noteId ?? '',
                 textStyle: Theme.of(context).textTheme.bodyText2!),
             CardSubnotes(note: note),
             const Divider(

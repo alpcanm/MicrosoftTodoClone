@@ -17,7 +17,7 @@ class CardSubnotes extends StatelessWidget {
         shrinkWrap: true,
         itemCount: note.subNotes?.length ?? 0,
         itemBuilder: (context, index) {
-          SubNote _subnote = note.subNotes![index]!;
+          SubNote _subnote = note.subNotes?[index] ?? SubNote();
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

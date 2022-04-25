@@ -32,7 +32,7 @@ class LeftBottom extends StatelessWidget {
     final _viewModel = Provider.of<ViewModel>(context, listen: false);
 
     if (_viewModel.user != null) {
-      final String _userId = _viewModel.user!.userId!;
+      final String _userId = _viewModel.user?.userId ?? '';
       final _noteMethods = ViewNoteMethods();
       final NoteServices _noteServices = getIt<NoteServices>();
 

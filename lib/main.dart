@@ -5,11 +5,13 @@ import 'package:bot_2000/core/view_model/note_viewmodel.dart';
 import 'package:bot_2000/core/view_model/window_state.dart';
 import 'package:bot_2000/core/view_model/view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
   setupGetIt();
+  await dotenv.load(fileName: '.env');
   await Hive.initFlutter();
   runApp(MultiProvider(
     child: MyApp(),

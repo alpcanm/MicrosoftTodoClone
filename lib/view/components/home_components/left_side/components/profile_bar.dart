@@ -13,7 +13,6 @@ class ProfileBar extends StatefulWidget {
 
 class _ProfileBarState extends State<ProfileBar> {
   bool _switchState = false;
- 
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +21,11 @@ class _ProfileBarState extends State<ProfileBar> {
 
     if (_user != null) {
       return ListTile(
-        title: Text(_user.name!),
+        title: Text(_user.name ?? ''),
         leading: const CircleAvatar(
           child: FlutterLogo(),
         ),
-        subtitle: Text(_user.mail!),
+        subtitle: Text(_user.mail ?? ''),
         trailing: themeSwitch(_viewModel),
       );
     } else {
@@ -48,6 +47,4 @@ class _ProfileBarState extends State<ProfileBar> {
           }
         });
   }
-
-
 }

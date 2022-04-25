@@ -24,7 +24,7 @@ class NoteBook {
 
   Map<String, dynamic> toMap() {
     return {
-      'notebook_id': noteBookId,
+      '_id': noteBookId,
       'rel_user_id': relUserId,
       'text': text,
       'created_at': createdAt.toString(),
@@ -37,7 +37,7 @@ class NoteBook {
 
   factory NoteBook.fromMap(Map<String, dynamic> map) {
     return NoteBook(
-      noteBookId: map['notebook_id'].toString(),
+      noteBookId: map['_id'].toString(),
       relUserId: map['rel_user_id'],
       text: map['text'],
       createdAt: DateTime.tryParse(map['created_at']),

@@ -4,9 +4,13 @@ import 'package:bot_2000/core/keys.dart';
 import 'package:bot_2000/core/models/notes/note.dart';
 import 'package:bot_2000/core/models/notes/note_book.dart';
 import 'package:bot_2000/core/models/notes/sub_note.dart';
-import 'package:bot_2000/core/network/config.dart';
+import 'package:bot_2000/core/config_const.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
+
+String? shortString(String? text) {
+  return text?.substring((text.length / 2).floor());
+}
 
 class NoteServices implements NotesLogic {
   final BaseOptions _baseOptions = BaseOptions();
@@ -25,7 +29,8 @@ class NoteServices implements NotesLogic {
       while (true) {
         await Future.delayed(const Duration(milliseconds: 500));
         List<NoteBook?> _noteBooks = [];
-        Response _response = await _dio.get('/${Keys.tableNotebooks}/$userId');
+        Response _response = await _dio.get('/${Keys.tableNotebooks}',
+            queryParameters: {'rel_id': shortString(userId)});
         List list = _response.data;
         for (var element in list) {
           NoteBook noteBook = NoteBook.fromMap(element);
@@ -48,12 +53,13 @@ class NoteServices implements NotesLogic {
         createdAt: _now,
         isVisible: true,
         lastUpdate: _now,
-        relUserId: relationId,
+        relUserId: shortString(relationId),
         text: 'Yeni not defteri',
         iconData: '',
         noteBookId: '',
         sequence: sequence);
     try {
+      print(_noteBook.relUserId);
       await _dio.post('/${Keys.tableNotebooks}', data: _noteBook.toJson());
       return true;
     } catch (e) {
@@ -68,8 +74,8 @@ class NoteServices implements NotesLogic {
     try {
       while (true) {
         await Future.delayed(const Duration(milliseconds: 500));
-        Response _response =
-            await _dio.get('/${Keys.tableNotes}/$relNoteBookId');
+        Response _response = await _dio.get('/${Keys.tableNotes}/',
+            queryParameters: {'rel_id': shortString(relNoteBookId)});
         List _list = _response.data;
         _notes = _list.map((e) {
           Note _note = Note.fromMap(e);
@@ -96,7 +102,7 @@ class NoteServices implements NotesLogic {
         createdAt: _now,
         isVisible: true,
         lastUpdate: _now,
-        relNoteBookId: relationId,
+        relNoteBookId: shortString(relationId),
         text: text,
         isComplete: false,
         comment: 'Bir yorum ekle.',
@@ -118,10 +124,11 @@ class NoteServices implements NotesLogic {
       while (true) {
         await Future.delayed(const Duration(milliseconds: 500));
         Note? _note = _notes
-            .where((element) => element!.noteId == noteId ? true : false)
+            .where((element) => element?.noteId == noteId ? true : false)
             .toList()
             .first;
-        Response _response = await _dio.get('/${Keys.tableSubnotes}/$noteId');
+        Response _response = await _dio.get('/${Keys.tableSubnotes}',
+            queryParameters: {'rel_id': shortString(noteId)});
         List _list = _response.data;
         List<SubNote> _subNoteList = _list.map((e) {
           SubNote _subnote = SubNote.fromMap(e);
@@ -147,7 +154,7 @@ class NoteServices implements NotesLogic {
         createdAt: _now,
         isComplete: false,
         isVisible: true,
-        relNoteId: relationId,
+        relNoteId: shortString(relationId),
         sequence: sequence,
         subNoteId: '',
         text: text);

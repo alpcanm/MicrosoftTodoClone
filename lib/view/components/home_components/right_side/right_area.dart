@@ -15,7 +15,7 @@ class RightArea extends StatelessWidget {
   Widget build(BuildContext context) {
     final _noteViewModel = Provider.of<NoteViewModel>(context);
     if (_noteViewModel.currentNote != null) {
-      Note _note = _noteViewModel.currentNote!;
+      Note _note = _noteViewModel.currentNote ?? Note();
       final noteMethods = ViewNoteMethods();
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -43,9 +43,9 @@ class RightArea extends StatelessWidget {
         child: Column(
           children: [
             StreamBuilderExtension<Note?>(
-                stream: noteMethods.getANote(_note.noteId!),
+                stream: noteMethods.getANote(_note.noteId ?? ''),
                 body: (context, AsyncSnapshot<Note?> snapshot) {
-                  Note _note = snapshot.data!;
+                  Note _note = snapshot.data ?? Note();
                   return RightCard(note: _note);
                 }),
             AddSubnote(

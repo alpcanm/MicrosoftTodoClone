@@ -12,10 +12,10 @@ class NoteTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Note?> _isCompleteFalse = notes
-        .where((element) => (element!.isComplete == false) ? true : false)
+        .where((element) => (element?.isComplete == false) ? true : false)
         .toList();
     List<Note?> _isCompleteTrue = notes
-        .where((element) => (element!.isComplete == true) ? true : false)
+        .where((element) => (element?.isComplete == true) ? true : false)
         .toList();
 
     if (_isCompleteFalse.isNotEmpty || _isCompleteTrue.isNotEmpty) {
@@ -28,7 +28,7 @@ class NoteTable extends StatelessWidget {
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return NoteButton(
-                  note: _isCompleteFalse[index]!,
+                  note: _isCompleteFalse[index] ?? Note(),
                 );
               },
             ),
@@ -40,7 +40,7 @@ class NoteTable extends StatelessWidget {
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return NoteButton(
-                  note: _isCompleteTrue[index]!,
+                  note: _isCompleteTrue[index] ?? Note(),
                 );
               },
             ),

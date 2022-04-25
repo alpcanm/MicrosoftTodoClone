@@ -28,12 +28,64 @@ class _LoginPageState extends State<LoginPage> {
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
-        child: SingleChildScrollView(child: form(context)),
+        child: SingleChildScrollView(
+            child: Form(
+          key: _formKey,
+          child: LoginCard(
+            widget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    const FlutterLogo(
+                      size: 75,
+                    ),
+                    Text(
+                      ConstTexts.title,
+                      style: Theme.of(context).textTheme.headline2!.copyWith(
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                      maxLines: 2,
+                    ),
+                  ],
+                ),
+                const Divider(
+                  color: Colors.transparent,
+                ),
+                MyTextField(
+                    controller: _mail,
+                    labelText: ConstTexts.mail,
+                    icon: Icons.person),
+                MyTextField(
+                    controller: _password,
+                    labelText: ConstTexts.password,
+                    obscureText: true,
+                    icon: Icons.lock),
+                ElevatedButton(
+                    onPressed: () {
+                      _loginFunction();
+                    },
+                    child: Text(ConstTexts.submit)),
+                const Divider(
+                  color: Colors.transparent,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      _registerPage();
+                    },
+                    child: Text(ConstTexts.register)),
+              ],
+            ),
+          ),
+        )),
       ),
     );
   }
 
-  _loginFunction() async {
+  void _loginFunction() async {
     if (_formKey.currentState!.validate()) {
       final _viewModel = Provider.of<ViewModel>(context, listen: false);
       _viewModel
@@ -52,64 +104,5 @@ class _LoginPageState extends State<LoginPage> {
 
   void _registerPage() {
     context.router.navigateNamed(RouteConsts.REGISTER_PAGE);
-  }
-
-  Form form(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: LoginCard(
-        widget: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            logoTitle(context),
-            const Divider(
-              color: Colors.transparent,
-            ),
-            MyTextField(
-                controller: _mail,
-                labelText: ConstTexts.mail,
-                icon: Icons.person),
-            MyTextField(
-                controller: _password,
-                labelText: ConstTexts.password,
-                obscureText: true,
-                icon: Icons.lock),
-            ElevatedButton(
-                onPressed: () {
-                  _loginFunction();
-                },
-                child: Text(ConstTexts.submit)),
-            const Divider(
-              color: Colors.transparent,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  _registerPage();
-                },
-                child: Text(ConstTexts.register)),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Wrap logoTitle(BuildContext context) {
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      alignment: WrapAlignment.center,
-      children: [
-        const FlutterLogo(
-          size: 75,
-        ),
-        Text(
-          ConstTexts.title,
-          style: Theme.of(context).textTheme.headline2!.copyWith(
-                decoration: TextDecoration.lineThrough,
-              ),
-          maxLines: 2,
-        ),
-      ],
-    );
   }
 }

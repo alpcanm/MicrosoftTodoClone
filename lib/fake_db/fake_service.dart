@@ -40,7 +40,7 @@ class FakeService {
     while (true) {
       await Future.delayed(const Duration(milliseconds: 500));
       Note? _note = notes
-          .where((element) => element!.noteId == noteId ? true : false)
+          .where((element) => element?.noteId == noteId ? true : false)
           .toList()
           .first;
       yield _note;
